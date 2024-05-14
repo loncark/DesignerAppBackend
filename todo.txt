@@ -5,8 +5,7 @@ Done:
 
 
 In progress:
-- create endpoint for ChatGPT api
-
+- retrieve API keys and test query them
 
 Tasks:
 - create endpoint for Google Trends api
@@ -14,9 +13,10 @@ Tasks:
 - create endpoint for TESS api
 - create endpoint for Firebase api
 - create endpoint for SD api
+- create endpoint for Gemini api
 
 
-OpenAI key: sk-proj-fdREu54Y72SdrM31vGm9T3BlbkFJMlBppOzfKqGJE4CPsqJh
-Gemini key: AIzaSyCDUNOMLPedjxvit_img2Sbk_gzLI-mI9I
-
-NPM PACKAGES USED
+PIP PACKAGES INSTALLED
+Flask
+google-generativeai
+serpapi
