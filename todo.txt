@@ -20,3 +20,4 @@ PIP PACKAGES INSTALLED
 Flask
 google-generativeai
 serpapi
+firebase-admin

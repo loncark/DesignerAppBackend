@@ -3,7 +3,7 @@ from firebase_admin import credentials
 from firebase_admin import storage
 
 # Initialize Firebase app (replace with your credentials)
-cred = credentials.Certificate('C:\\Users\\Kristina\\Documents\\Diplomski rad\\DesignerAppBackend\\DesignerAppStorageCreds.json')  # Replace with your credentials file path
+cred = credentials.Certificate('C:\\Users\\Kristina\\Documents\\Diplomski rad\\DesignerAppBackend\\DesignerAppFirebaseCreds.json')  # Replace with your credentials file path
 firebase_admin.initialize_app(cred, {
     'storageBucket': 'designerapp-65092.appspot.com'
 })

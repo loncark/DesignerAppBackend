@@ -163,3 +163,4 @@ cython_debug/
 config.py
 slika.png
 DesignerAppStorageCreds.json
+DesignerAppFirebaseCreds.json
