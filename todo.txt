@@ -5,7 +5,8 @@ Done:
 
 
 In progress:
-- retrieve API keys and test query them
+- retrieve API keys and test query them (Etsy remaining)
+- create endpoints that will return API data
 
 Tasks:
 - create endpoint for Google Trends api

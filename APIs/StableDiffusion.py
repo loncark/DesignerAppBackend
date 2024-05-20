@@ -1,5 +1,7 @@
-# Define the URL and the payload to send.
-url = "http://127.0.0.1:7860/sdapi/v1/txt2img"
+import asyncio
+import aiohttp
+import base64
+from config import SD_TXT2IMG_URL
 
 payload = {
   "prompt": "a yellow triangle",
@@ -12,9 +14,7 @@ payload = {
   "tiling": False,  
 }
 
-import asyncio
-import aiohttp
-import base64
+url = SD_TXT2IMG_URL
 
 async def fetch_and_save_image(url, payload):
   async with aiohttp.ClientSession() as session:

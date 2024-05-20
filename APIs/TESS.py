@@ -1,9 +1,10 @@
 import requests
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from config import TESS_API_KEY
+from config import TESS_API_KEY, TESS_BASE_URL
 
-url = "https://uspto-trademark.p.rapidapi.com/v1/trademarkSearch/just%20do%20it/active"
+url = TESS_BASE_URL + "v1/trademarkSearch/just%20do%20it/active"
+
 
 headers = {
 	"X-RapidAPI-Key": TESS_API_KEY,

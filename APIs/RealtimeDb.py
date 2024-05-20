@@ -1,11 +1,12 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+from config import REALTIMEDB_URL, FIREBASE_CREDS_JSON_LOCATION
 
 # Initialize Firebase app (replace with your credentials)
-cred = credentials.Certificate('C:\\Users\\Kristina\\Documents\\Diplomski rad\\DesignerAppBackend\\DesignerAppFirebaseCreds.json')  # Replace with your credentials file path
+cred = credentials.Certificate(FIREBASE_CREDS_JSON_LOCATION)  # Replace with your credentials file path
 firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://designerapp-65092-default-rtdb.europe-west1.firebasedatabase.app/'  # Replace with your database URL
+    'databaseURL': REALTIMEDB_URL  # Replace with your database URL
 })
 
 # Get a reference to the database
