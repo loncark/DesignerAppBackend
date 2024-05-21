@@ -5,12 +5,12 @@ from config import TESS_API_KEY, TESS_BASE_URL
 
 url = TESS_BASE_URL + "v1/trademarkSearch/just%20do%20it/active"
 
+def fetchResponse():
+	headers = {
+		"X-RapidAPI-Key": TESS_API_KEY,
+		"X-RapidAPI-Host": "uspto-trademark.p.rapidapi.com"
+	}
 
-headers = {
-	"X-RapidAPI-Key": TESS_API_KEY,
-	"X-RapidAPI-Host": "uspto-trademark.p.rapidapi.com"
-}
+	response = requests.get(url, headers=headers)
 
-response = requests.get(url, headers=headers)
-
-print(response.json())
+	return response.json()
