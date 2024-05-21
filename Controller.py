@@ -14,8 +14,8 @@ def queryGoogleTrends():
 def saveToRealtimeDb():
     return service.FirebaseService.storeToDb('')
 
-def SDtextToImage():
-    return service.StableDiffusionService.fetch_and_save_image('')
+async def SDtextToImage():
+    return await service.StableDiffusionService.fetch_and_save_image('')
 
 def saveToStorage():
     return service.FirebaseService.storeToStorage()
