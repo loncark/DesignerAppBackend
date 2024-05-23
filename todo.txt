@@ -9,12 +9,7 @@ In progress:
 - create endpoints that will return API data
 
 Tasks:
-- create endpoint for Google Trends api
-- create endpoint for Etsy api
-- create endpoint for TESS api
-- create endpoint for Firebase api
-- create endpoint for SD api
-- create endpoint for Gemini api
+- filter data
 
 
 PIP PACKAGES INSTALLED

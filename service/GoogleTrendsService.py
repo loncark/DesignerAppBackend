@@ -1,12 +1,15 @@
 import serpapi
 from config import SERPAPI_API_KEY
 
+# change frequency to realtime for realtime searches,
+# delete the date field and add "cat": "all",
+
 def fetchResponse(params):
   params = {
         "engine": "google_trends_trending_now",
-        "frequency": "realtime",
+        "frequency": "daily",
         "geo": "US",
-        "cat": "all",
+        "date": "20240505",
         "api_key": SERPAPI_API_KEY
       }
 

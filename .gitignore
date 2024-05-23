@@ -164,3 +164,6 @@ config.py
 slika.png
 DesignerAppStorageCreds.json
 DesignerAppFirebaseCreds.json
+TESS.json
+Trends.json
+TrendsDaily.json
