@@ -1,4 +1,3 @@
-from flask import jsonify
 import service.GeminiService
 import service.GoogleTrendsService
 import service.FirebaseService
@@ -21,4 +20,4 @@ def saveToStorage():
     return service.FirebaseService.storeToStorage()
 
 def queryTESS():
-    return service.TrademarkService.fetchResponse()
+    return service.TrademarkService.fetchAndFilterResponse()
