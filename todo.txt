@@ -2,14 +2,47 @@ Le Kanban
 
 Done:
 - setup environment and execute basic Flask project
+- create endpoints that will return API data
+- filter data
 
 
 In progress:
-- retrieve API keys and test query them (Etsy remaining)
-- create endpoints that will return API data
+
 
 Tasks:
-- filter data
+- retrieve API key, test query, create endpoint and filter result for Etsy when api key gets approved
+
+
+
+What endpoints do I need?
+Trends:
+--> retrieve daily trends
+
+Etsy: 
+--> retrieve popular items by keyword
+--> retrieve most carted items by keyword
+--> retrieve the newest items by keyword that have sold at least x times
+--> retrieve a specific item by id
+
+TESS:
+--> return results for validity of keywords
+
+Gemini:
+--> general query endpoint
+--> tag creation endpoint
+--> title creation endpoint
+
+Stable Diffusion:
+--> text to image endpoint
+--> image to image endpoint
+
+Realtime Database:
+--> store (idea_name, image, title, tags) objects
+--> store (trend, idea) objects
+
+Storage:
+--> store image and retrieve download link
+
 
 
 PIP PACKAGES INSTALLED
