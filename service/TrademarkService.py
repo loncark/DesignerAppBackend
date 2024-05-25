@@ -1,23 +1,25 @@
 import requests
 import sys, os
 import json
+from urllib.parse import quote
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from config import TESS_API_KEY, TESS_BASE_URL
 
-url = TESS_BASE_URL + "v1/trademarkSearch/just%20do%20it/active"
+def fetchAndFilterResponse(prompt):
+    return filterJson(fetchResponse(prompt))
 
-def fetchAndFilterResponse():
-    return filterJson(fetchResponse())
+def fetchResponse(prompt):
+    headers = {
+      "X-RapidAPI-Key": TESS_API_KEY,
+      "X-RapidAPI-Host": "uspto-trademark.p.rapidapi.com"
+    }
 
-def fetchResponse():
-	headers = {
-		"X-RapidAPI-Key": TESS_API_KEY,
-		"X-RapidAPI-Host": "uspto-trademark.p.rapidapi.com"
-	}
+    encoded_prompt = quote(prompt)
+    url = TESS_BASE_URL + f"v1/trademarkSearch/{encoded_prompt}/active"
 
-	response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers)
 
-	return response.json()
+    return response.json()
 
 
 def filterJson(data):
