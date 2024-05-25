@@ -28,9 +28,9 @@ TESS:
 --> return results for validity of keywords
 
 Gemini:
---> general query endpoint
---> tag creation endpoint
---> title creation endpoint
+--> general query endpoint  DONE   
+--> tag creation endpoint   DONE    
+--> title creation endpoint DONE
 
 Stable Diffusion:
 --> text to image endpoint
