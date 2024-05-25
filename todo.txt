@@ -37,11 +37,11 @@ Stable Diffusion:
 --> image to image endpoint
 
 Realtime Database:
---> store (idea_name, image_link_array, title, tags) objects
---> store (trend_title, trend_link, trend_thumbnail, trend_date, idea_array) objects
+--> store (design_name, image_links, title, tags) objects
+--> store (trend_title, trend_link, trend_thumbnail_link, trend_date, idea_array) objects
 
 Storage:
---> store image and retrieve download link
+--> store image and retrieve download link  DONE
 
 
 

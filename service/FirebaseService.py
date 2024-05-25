@@ -13,19 +13,37 @@ firebase_admin.initialize_app(cred, {
 
 # REALTIME DATABASE
 
-ref = db.reference('/')
-
-def storeToDb(data):
+def storeDesignToDb(design_name, title, tags, image_links):
+    ref = db.reference('/Designs')
     data = {
-        'message': 'This is a test message!',
-        'number': 42,
-        'array': ['apple', 'banana', 'cherry']
+        'design_name': design_name,
+        'title': title,
+        'tags': tags,
+        'image_links': image_links
     }
 
-    ref.push(data)
-    print('Test data written to Firebase Realtime Database!')
+    try:
+        ref.push(data)
+        return "Db design query success"  
+    except Exception as e:
+        return f'Error uploading design data: {e}'
+    
+def storeIdeaToDb(trend_title, trend_link, trend_thumbnail_link, trend_date, ideas):
+    ref = db.reference('/Ideas')
+    data = {
+        'trend_title': trend_title,
+        'trend_link': trend_link,
+        'trend_thumbnail_link': trend_thumbnail_link,
+        'trend_date': trend_date,
+        'ideas': ideas
+    }
 
-    return "Db query success"
+    try:
+        ref.push(data)
+        return "Db idea query success"  
+    except Exception as e:
+        return f'Error uploading idea data: {e}'
+
 
 # STORAGE
 
@@ -35,7 +53,7 @@ def storeToStorage(image_file, image_filename):
     try:
         image_path = f'images/{image_filename}'
         image_ref = bucket.blob(image_path)
-        image_ref.upload_from_file(image_file)
+        image_ref.upload_from_file(image_file, content_type='image/png')
         download_url = image_ref.public_url
         return download_url
     except Exception as e:
