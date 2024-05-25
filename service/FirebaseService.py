@@ -1,5 +1,6 @@
 import firebase_admin
 from firebase_admin import credentials, db, storage
+from flask import request
 from config import REALTIMEDB_URL, FIREBASE_CREDS_JSON_LOCATION
 from config import FIREBASE_CREDS_JSON_LOCATION, STORAGE_BUCKET_LOCATION
 
@@ -30,20 +31,12 @@ def storeToDb(data):
 
 bucket = storage.bucket()
 
-image_path = 'images/slika.jpg'
-image_ref = bucket.blob(image_path)
-
-def storeToStorage():
+def storeToStorage(image_file, image_filename):
     try:
-        with open('C:\\Users\\Kristina\\Documents\\Diplomski rad\\DesignerAppBackend\\slika.png', 'rb') as image_file: 
-            image_ref.upload_from_file(image_file)
-            print('Upload complete!')
-
-            # Get the download URL (optional)
-            download_url = image_ref.public_url
-            print(f'Download URL: {download_url}')
-
-            return download_url
-
+        image_path = f'images/{image_filename}'
+        image_ref = bucket.blob(image_path)
+        image_ref.upload_from_file(image_file)
+        download_url = image_ref.public_url
+        return download_url
     except Exception as e:
-        print(f'Error uploading image: {e}')
+        return f'Error uploading image: {e}'

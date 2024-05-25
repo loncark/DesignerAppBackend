@@ -16,7 +16,7 @@ Tasks:
 
 What endpoints do I need?
 Trends:
---> retrieve daily trends
+--> retrieve daily trends   DONE
 
 Etsy: 
 --> retrieve popular items by keyword
@@ -25,7 +25,7 @@ Etsy:
 --> retrieve a specific item by id
 
 TESS:
---> return results for validity of keywords
+--> return results for validity of keywords  DONE
 
 Gemini:
 --> general query endpoint  DONE   
@@ -37,8 +37,8 @@ Stable Diffusion:
 --> image to image endpoint
 
 Realtime Database:
---> store (idea_name, image, title, tags) objects
---> store (trend, idea) objects
+--> store (idea_name, image_link_array, title, tags) objects
+--> store (trend_title, trend_link, trend_thumbnail, trend_date, idea_array) objects
 
 Storage:
 --> store image and retrieve download link
