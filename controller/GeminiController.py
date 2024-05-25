@@ -9,8 +9,14 @@ def queryGemini():
     prompt = data.get('prompt')
     return service.GeminiService.fetchResponse(prompt)
 
+@gemini_bp.route('/gemini/tags', methods=['POST'])
 def generateTags():
-    return service.GeminiService.generateTags('t-shirt with a happy cat')
+    data = request.get_json()
+    prompt = data.get('prompt')
+    return service.GeminiService.generateTags(prompt)
 
+@gemini_bp.route('/gemini/title', methods=['POST'])
 def generateTitle():
-    return service.GeminiService.generateTitle('t-shirt with a happy cat')
+    data = request.get_json()
+    prompt = data.get('prompt')
+    return service.GeminiService.generateTitle(prompt)

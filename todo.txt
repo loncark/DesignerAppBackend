@@ -7,7 +7,7 @@ Done:
 
 
 In progress:
-
+- refine endpoints to receive request body data
 
 Tasks:
 - retrieve API key, test query, create endpoint and filter result for Etsy when api key gets approved
