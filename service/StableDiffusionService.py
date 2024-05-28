@@ -1,29 +1,21 @@
 import aiohttp
-import base64
-from config import SD_TXT2IMG_URL
+from config import SD_TXT2IMG_URL, SD_IMG2IMG_URL
 
-url = SD_TXT2IMG_URL
+async def txt2img(payload):
+  return await call_api(SD_TXT2IMG_URL, payload)
 
-async def fetch_and_save_image(payload):
+        
+async def img2img(payload):
+  return await call_api(SD_IMG2IMG_URL, payload)
 
-  payload = {
-  "prompt": "a yellow triangle",
-  "batch_size": 1,
-  "steps": 1,
-  "cfg_scale": 1,
-  "width": 64,
-  "height": 64,
-  "restore_faces": False,
-  "tiling": False,  
-}
 
-  async with aiohttp.ClientSession() as session:
+async def call_api(url, payload):
+   async with aiohttp.ClientSession() as session:
     async with session.post(url, json=payload) as response:
       if response.status == 200:
-        r = await response.json()
-        with open("output.png", 'wb') as f:
-          f.write(base64.b64decode(r['images'][0]))
-
-        return "Image created"
+        return await response.json()
       else:
         print(f"Error: {response.status}")
+
+
+
