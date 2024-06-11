@@ -26,11 +26,13 @@ def filterJson(data):
   transformed_data = {}
   transformed_data["count"] = data["count"]
   transformed_data["items"] = []
+
   for item in data["items"]:
     new_item = {}
     new_item["description"] = item["description"]
     new_item["keyword"] = item["keyword"]
     new_item["owners"] = []
+
     for owner in item["owners"]:
       owner_data = {
           "address1": owner.get("address1"),
@@ -39,8 +41,10 @@ def filterJson(data):
           "name": owner.get("name"),
       }
       new_item["owners"].append(owner_data)
+
     new_item["status_label"] = item["status_label"]
     transformed_data["items"].append(new_item)
+    
   return transformed_data
 
 
