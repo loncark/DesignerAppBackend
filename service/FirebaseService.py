@@ -29,6 +29,22 @@ def storeDesignToDb(design_name, title, tags, image_links):
     except Exception as e:
         return f'Error uploading design data: {e}'
 
+def getAllDesigns():
+    ref = db.reference('/Designs')
+    try:
+        designs = ref.get()
+        if designs:
+            designs_with_ids = []
+            for design_id, design_data in designs.items():
+                design_data['id'] = design_id
+                designs_with_ids.append(design_data)
+            return designs_with_ids
+        else:
+            return []
+    except Exception as e:
+        return f'Error retrieving designs: {e}'
+
+
 # STORAGE
 
 bucket = storage.bucket()

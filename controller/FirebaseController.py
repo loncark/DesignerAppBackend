@@ -3,10 +3,14 @@ from flask import Blueprint, request, jsonify
 
 firebase_bp = Blueprint('firebase_bp', __name__)
 
-@firebase_bp.route('/db', methods=['POST'])
+@firebase_bp.route('/db/saveDesign', methods=['POST'])
 def saveDesignToRealtimeDb():
     data = request.get_json()
     return service.FirebaseService.storeDesignToDb(**data)
+
+@firebase_bp.route('/db/allDesigns', methods=['GET'])
+def getAllDesigns():
+    return service.FirebaseService.getAllDesigns()
 
 @firebase_bp.route('/storage', methods=['POST'])
 def saveToStorage():
