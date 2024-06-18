@@ -6,6 +6,7 @@ firebase_bp = Blueprint('firebase_bp', __name__)
 @firebase_bp.route('/db/saveDesign', methods=['POST'])
 def saveDesignToRealtimeDb():
     data = request.get_json()
+    print(data)
     return service.FirebaseService.storeDesignToDb(**data)
 
 @firebase_bp.route('/db/allDesigns', methods=['GET'])

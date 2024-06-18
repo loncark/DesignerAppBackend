@@ -14,20 +14,28 @@ firebase_admin.initialize_app(cred, {
 
 # REALTIME DATABASE
 
-def storeDesignToDb(design_name, title, tags, image_links):
+def storeDesignToDb(design_name, title, tags, related_links, image_links, design_id=None):
     ref = db.reference('/Designs')
+
     data = {
         'design_name': design_name,
         'title': title,
         'tags': tags,
-        'image_links': image_links
+        'related_links': related_links,
+        'image_links': image_links      
     }
 
     try:
-        ref.push(data)
-        return "Db design query success"  
+        if design_id:
+            design_ref = ref.child(design_id)
+            design_ref.update(data)
+            return f"Design with ID {design_id} updated successfully"
+        else:
+            ref.push(data)
+            return "Design added to DB successfully"
     except Exception as e:
         return f'Error uploading design data: {e}'
+
 
 def getAllDesigns():
     ref = db.reference('/Designs')
@@ -36,13 +44,20 @@ def getAllDesigns():
         if designs:
             designs_with_ids = []
             for design_id, design_data in designs.items():
-                design_data['id'] = design_id
-                designs_with_ids.append(design_data)
+                designs_with_ids.append({
+                    'design_name': design_data.get('design_name', ''),
+                    'design_id': design_id,
+                    'related_links': design_data.get('related_links', []),
+                    'image_links': design_data.get('image_links', []),
+                    'tags': design_data.get('tags', []),
+                    'title': design_data.get('title', '')
+                })
             return designs_with_ids
         else:
             return []
     except Exception as e:
         return f'Error retrieving designs: {e}'
+
 
 
 # STORAGE
