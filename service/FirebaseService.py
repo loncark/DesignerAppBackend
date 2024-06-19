@@ -76,6 +76,7 @@ def storeToStorage(image_file):
         blob = bucket.blob(f'images/{uuid.uuid4()}.png')
         blob.upload_from_filename(temp_path)
 
+        blob.make_public()
         return blob.public_url
     except Exception as e:
         return f'Error uploading image: {e}'
