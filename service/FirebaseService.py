@@ -72,7 +72,6 @@ def storeToStorage(image_file):
         temp_path = '/tmp/image.png'
         image.save(temp_path, format='PNG')
 
-        # Upload to Firebase Storage
         blob = bucket.blob(f'images/{uuid.uuid4()}.png')
         blob.upload_from_filename(temp_path)
 
@@ -80,3 +79,20 @@ def storeToStorage(image_file):
         return blob.public_url
     except Exception as e:
         return f'Error uploading image: {e}'
+    
+def deleteFromStorageByUrl(download_url):
+    try:
+        file_name = download_url.split('/')[-1]
+        blob = bucket.blob('images/' + file_name)
+        
+        # Delete the file if it exists
+        if blob.exists():
+            blob.delete()
+            return True
+        else:
+            return False
+    except Exception as e:
+        print(f"Error deleting file: {e}")
+        return False
+
+

@@ -6,7 +6,6 @@ firebase_bp = Blueprint('firebase_bp', __name__)
 @firebase_bp.route('/db/saveDesign', methods=['POST'])
 def saveDesignToRealtimeDb():
     data = request.get_json()
-    print(data)
     return service.FirebaseService.storeDesignToDb(**data)
 
 @firebase_bp.route('/db/allDesigns', methods=['GET'])
@@ -21,3 +20,13 @@ def saveToStorage():
     downloadUrl = service.FirebaseService.storeToStorage(request.files['image'])
 
     return jsonify({'url': downloadUrl}), 200
+
+@firebase_bp.route('/storageDelete', methods=['DELETE'])
+def deleteFromStorage():
+    url = request.get_json().get('imgUrl')
+    boolean = service.FirebaseService.deleteFromStorageByUrl(url)
+
+    if boolean:
+        return jsonify({'msg': 'File deleted successfully'}), 200
+    else:
+        return jsonify({'msg': 'File does not exist or incorrect url'}), 400
