@@ -53,8 +53,6 @@ def updateImageLinksOnDesignWithId(image_links, design_id):
     except Exception as e:
         return f'Error updating image links: {e}'
 
-
-
 def getAllDesigns():
     ref = db.reference('/Designs')
     try:
@@ -76,7 +74,15 @@ def getAllDesigns():
     except Exception as e:
         return f'Error retrieving designs: {e}'
 
-
+def deleteDesign(design_id):
+    ref = db.reference(f'Designs/{design_id}')
+    
+    try:
+        ref.delete()
+        return f"Design with ID {design_id} deleted successfully"
+        
+    except Exception as e:
+        return f'Error deleting design data: {e}'
 
 # STORAGE
 
