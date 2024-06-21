@@ -36,6 +36,24 @@ def storeDesignToDb(design_name, title, tags, related_links, image_links, design
     except Exception as e:
         return f'Error uploading design data: {e}'
 
+def updateImageLinksOnDesignWithId(image_links, design_id):
+    ref = db.reference('/Designs')
+
+    data = {
+        'image_links': image_links      
+    }
+
+    try:
+        if design_id:
+            design_ref = ref.child(design_id)
+            design_ref.update(data)
+            return f"Image links for design with ID {design_id} updated successfully"
+        else:
+            return "Design ID is required to update image links"
+    except Exception as e:
+        return f'Error updating image links: {e}'
+
+
 
 def getAllDesigns():
     ref = db.reference('/Designs')
@@ -82,14 +100,17 @@ def storeToStorage(image_file):
     
 def deleteFromStorageByUrl(download_url):
     try:
-        file_name = download_url.split('/')[-1]
-        blob = bucket.blob('images/' + file_name)
+        file_name = download_url.split('/')[-2] + '/' + download_url.split('/')[-1]
+        print(file_name)
+        blob = bucket.blob(file_name)
         
         # Delete the file if it exists
         if blob.exists():
             blob.delete()
+            print("I deleted the image")
             return True
         else:
+            print("Deletion failed")
             return False
     except Exception as e:
         print(f"Error deleting file: {e}")

@@ -8,6 +8,11 @@ def saveDesignToRealtimeDb():
     data = request.get_json()
     return service.FirebaseService.storeDesignToDb(**data)
 
+@firebase_bp.route('/db/updateImageLinks', methods=['POST'])
+def updateImageLinks():
+    data = request.get_json()
+    return service.FirebaseService.updateImageLinksOnDesignWithId(**data)
+
 @firebase_bp.route('/db/allDesigns', methods=['GET'])
 def getAllDesigns():
     return service.FirebaseService.getAllDesigns()
@@ -23,7 +28,7 @@ def saveToStorage():
 
 @firebase_bp.route('/storageDelete', methods=['DELETE'])
 def deleteFromStorage():
-    url = request.get_json().get('imgUrl')
+    url = request.get_json().get('imgUrl')  #obriso ga je al ga nije obriso
     boolean = service.FirebaseService.deleteFromStorageByUrl(url)
 
     if boolean:
