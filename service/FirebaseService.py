@@ -14,7 +14,7 @@ firebase_admin.initialize_app(cred, {
 
 # REALTIME DATABASE
 
-def storeDesignToDb(design_name, title, tags, related_links, image_links, design_id=None):
+def storeDesignToDb(design_name, title, tags, related_links, image_links, design_id):
     ref = db.reference('/Designs')
 
     data = {
@@ -26,13 +26,13 @@ def storeDesignToDb(design_name, title, tags, related_links, image_links, design
     }
 
     try:
-        if design_id:
-            design_ref = ref.child(design_id)
+        design_ref = ref.child(design_id)
+        if design_ref.get():
             design_ref.update(data)
             return f"Design with ID {design_id} updated successfully"
         else:
-            ref.push(data)
-            return "Design added to DB successfully"
+            design_ref.set(data)
+            return f"Design with ID {design_id} added successfully"
     except Exception as e:
         return f'Error uploading design data: {e}'
 
@@ -88,7 +88,7 @@ def deleteDesign(design_id):
 
 bucket = storage.bucket()
 
-def storeToStorage(image_file):
+def storeToStorage(image_file, design_id):
     try:
         image = Image.open(image_file)
 
@@ -96,7 +96,7 @@ def storeToStorage(image_file):
         temp_path = '/tmp/image.png'
         image.save(temp_path, format='PNG')
 
-        blob = bucket.blob(f'images/{uuid.uuid4()}.png')
+        blob = bucket.blob(f'images/{design_id}/{uuid.uuid4()}.png')
         blob.upload_from_filename(temp_path)
 
         blob.make_public()

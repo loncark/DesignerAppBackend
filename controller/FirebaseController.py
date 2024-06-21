@@ -27,9 +27,18 @@ def saveToStorage():
     if 'image' not in request.files:
         return jsonify({'error': 'No image file provided'}), 400
 
-    downloadUrl = service.FirebaseService.storeToStorage(request.files['image'])
+    if 'design_id' not in request.form or not request.form['design_id']:
+        return jsonify({'error': 'No design_id provided'}), 400
 
-    return jsonify({'url': downloadUrl}), 200
+    image = request.files['image']
+    design_id = request.form['design_id']
+    
+    try:
+        download_url = service.FirebaseService.storeToStorage(image, design_id)
+        return jsonify({'url': download_url}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 @firebase_bp.route('/storageDelete', methods=['DELETE'])
 def deleteFromStorage():
