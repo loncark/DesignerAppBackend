@@ -109,17 +109,20 @@ def deleteFromStorageByUrl(download_url):
         file_name = download_url.split('/')[-2] + '/' + download_url.split('/')[-1]
         print(file_name)
         blob = bucket.blob(file_name)
-        
+
         # Delete the file if it exists
         if blob.exists():
             blob.delete()
             print("I deleted the image")
             return True
         else:
-            print("Deletion failed")
-            return False
+            print("File not found.") 
+
     except Exception as e:
         print(f"Error deleting file: {e}")
         return False
+
+    return True
+
 
 
