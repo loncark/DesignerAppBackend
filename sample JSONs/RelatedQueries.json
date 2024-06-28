@@ -1,0 +1,55 @@
+{
+    "related_queries": {
+        "rising": [
+            {
+                "extracted_value": 5800,
+                "link": "https://trends.google.com/trends/explore?q=shop+coffee+tables+on+sale&date=today+12-m",
+                "query": "shop coffee tables on sale",
+                "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=shop+coffee+tables+on+sale&tz=420",
+                "value": "Breakout"
+            },
+            {
+                "extracted_value": 1600,
+                "link": "https://trends.google.com/trends/explore?q=cotti+coffee&date=today+12-m",
+                "query": "cotti coffee",
+                "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=cotti+coffee&tz=420",
+                "value": "+1,600%"
+            }
+        ],
+        "top": [
+            {
+                "extracted_value": 100,
+                "link": "https://trends.google.com/trends/explore?q=the+coffee&date=today+12-m",
+                "query": "the coffee",
+                "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=the+coffee&tz=420",
+                "value": "100"
+            },
+            {
+                "extracted_value": 95,
+                "link": "https://trends.google.com/trends/explore?q=coffee+shop&date=today+12-m",
+                "query": "coffee shop",
+                "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=coffee+shop&tz=420",
+                "value": "95"
+            }
+            
+        ]
+    },
+    "search_metadata": {
+        "created_at": "2024-06-28 14:14:53 UTC",
+        "google_trends_url": "https://trends.google.com/trends/api/explore?tz=420&req=%7B%22comparisonItem%22%3A%5B%7B%22keyword%22%3A%22coffee%22%2C%22geo%22%3A%22%22%2C%22time%22%3A%22today+12-m%22%7D%5D%2C%22category%22%3A0%2C%22property%22%3A%22%22%2C%22userConfig%22%3A%22%7BuserType%3A+%5C%22USER_TYPE_LEGIT_USER%5C%22%7D%22%7D",
+        "id": "667ec55d437af2a5ad18e2c6",
+        "json_endpoint": "https://serpapi.com/searches/d92d9ebf8e131c0d/667ec55d437af2a5ad18e2c6.json",
+        "prettify_html_file": "https://serpapi.com/searches/d92d9ebf8e131c0d/667ec55d437af2a5ad18e2c6.prettify",
+        "processed_at": "2024-06-28 14:14:53 UTC",
+        "raw_html_file": "https://serpapi.com/searches/d92d9ebf8e131c0d/667ec55d437af2a5ad18e2c6.html",
+        "status": "Success",
+        "total_time_taken": 6.55
+    },
+    "search_parameters": {
+        "data_type": "RELATED_QUERIES",
+        "date": "today 12-m",
+        "engine": "google_trends",
+        "q": "coffee",
+        "tz": "420"
+    }
+}

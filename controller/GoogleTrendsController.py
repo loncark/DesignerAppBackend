@@ -9,4 +9,10 @@ def queryGoogleTrends():
     data = request.get_json()
     country_code = data.get('country_code')
     date = data.get('date')
-    return service.GoogleTrendsService.fetchResponse(date, country_code)
+    return service.GoogleTrendsService.fetchTrends(date, country_code)
+
+@gt_bp.route('/relatedQueries', methods=['POST'])
+def queryRelatedQueries():
+    data = request.get_json()
+    keyword = data.get('keyword')
+    return service.GoogleTrendsService.fetchRelatedQueries(keyword)
