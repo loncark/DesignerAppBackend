@@ -171,3 +171,6 @@ FirebaseTest.py
 SDTEst.py
 sample JSONs/allDesignsResponse.json
 sample JSONs/dummy.json
+sample JSONs/RelatedQueries.json
+sample JSONs/InterestByRegion.json
+sample JSONs/RelatedQueries.json

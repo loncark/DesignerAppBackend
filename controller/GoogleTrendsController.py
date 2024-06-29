@@ -16,3 +16,9 @@ def queryRelatedQueries():
     data = request.get_json()
     keyword = data.get('keyword')
     return service.GoogleTrendsService.fetchRelatedQueries(keyword)
+
+@gt_bp.route('/interestByRegion', methods=['POST'])
+def queryInterestByRegion():
+    data = request.get_json()
+    keyword = data.get('keyword')
+    return service.GoogleTrendsService.fetchInterestByRegion(keyword)

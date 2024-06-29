@@ -14,6 +14,19 @@
                 "query": "cotti coffee",
                 "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=cotti+coffee&tz=420",
                 "value": "+1,600%"
+            },{
+                "extracted_value": 900,
+                "link": "https://trends.google.com/trends/explore?q=sweet+karam+coffee&date=today+12-m",
+                "query": "sweet karam coffee",
+                "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=sweet+karam+coffee&tz=420",
+                "value": "+900%"
+            },
+            {
+                "extracted_value": 750,
+                "link": "https://trends.google.com/trends/explore?q=tomoro+coffee&date=today+12-m",
+                "query": "tomoro coffee",
+                "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=tomoro+coffee&tz=420",
+                "value": "+750%"
             }
         ],
         "top": [

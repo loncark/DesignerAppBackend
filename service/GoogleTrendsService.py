@@ -30,3 +30,16 @@ def fetchRelatedQueries(keyword):
   results = search.as_dict()
   
   return results
+
+def fetchInterestByRegion(keyword):
+  params = {
+  "engine": "google_trends",
+  "q": {keyword},
+  "data_type": "GEO_MAP_0",
+  "api_key": SERPAPI_API_KEY
+}
+
+  search = serpapi.search(params)
+  results = search.as_dict()
+  
+  return results
