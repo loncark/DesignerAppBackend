@@ -1,9 +1,18 @@
-#https://openapi.etsy.com/v3/application/listings/active
-#findAllListingsActive
+from config import SERPAPI_ETSY_URL, TESS_API_KEY
 
-import json
+import requests
 
-def fetchProducts(keyword):
-    with open('sample JSONs\EtsyDummyProducts.json', 'r') as file:
-        data = json.load(file)
-    return data
+def fetchProducts(keyword, page):
+
+    querystring = {"query": keyword, "page" : page}
+
+    headers = {
+        "x-rapidapi-key": TESS_API_KEY,
+        "x-rapidapi-host": "etsy-api2.p.rapidapi.com"
+    }
+
+    response = requests.get(SERPAPI_ETSY_URL, headers=headers, params=querystring)
+
+    return response.json()
+
+
