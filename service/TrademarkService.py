@@ -3,14 +3,14 @@ import sys, os
 import json
 from urllib.parse import quote
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from config import TESS_API_KEY, TESS_BASE_URL
+from config import RAPIDAPI_API_KEY, TESS_BASE_URL
 
 def fetchAndFilterResponse(prompt):
     return filterJson(fetchResponse(prompt))
 
 def fetchResponse(prompt):
     headers = {
-      "X-RapidAPI-Key": TESS_API_KEY,
+      "X-RapidAPI-Key": RAPIDAPI_API_KEY,
       "X-RapidAPI-Host": "uspto-trademark.p.rapidapi.com"
     }
 
