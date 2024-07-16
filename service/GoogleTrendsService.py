@@ -1,10 +1,10 @@
-import serpapi, json
+import serpapi, json, os
 from config import SERPAPI_API_KEY
 
 # change frequency to realtime for realtime searches,
 # delete the date field and add "cat": "all",
 
-def fetchTrends(date, country_code):
+def fetchTrends2(date, country_code):
     params = {
         "engine": "google_trends_trending_now",
         "frequency": "daily",
@@ -26,7 +26,7 @@ def fetchTrends(date, country_code):
         else:
             raise
 
-def fetchRelatedQueries(keyword):
+def fetchRelatedQueries2(keyword):
     params = {
         "engine": "google_trends",
         "q": keyword,
@@ -47,7 +47,7 @@ def fetchRelatedQueries(keyword):
         else:
             raise
 
-def fetchInterestByRegion(keyword):
+def fetchInterestByRegion2(keyword):
     params = {
         "engine": "google_trends",
         "q": keyword,
@@ -67,3 +67,37 @@ def fetchInterestByRegion(keyword):
             return json.dumps(error_response), 429
         else:
             raise
+
+# TEST FUNCTIONS TO NOT DRAIN THE API LIMIT (45/mo for etsy, a lot for trademark, 100/mo for Trends, interest and related together)
+def fetchTrends(keyword, page):
+    file_path = r"C:\Users\Kristina\Documents\Diplomski rad\DesignerAppBackend\sample JSONs\TrendPage1.json"
+    
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"The file {file_path} does not exist.")
+    
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+    
+    return data
+
+def fetchRelatedQueries(keyword):
+    file_path = r"C:\Users\Kristina\Documents\Diplomski rad\DesignerAppBackend\sample JSONs\KeywordsRelated.json"
+    
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"The file {file_path} does not exist.")
+    
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+    
+    return data
+
+def fetchInterestByRegion(keyword):
+    file_path = r"C:\Users\Kristina\Documents\Diplomski rad\DesignerAppBackend\sample JSONs\KeywordsInterest.json"
+    
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"The file {file_path} does not exist.")
+    
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+    
+    return data
