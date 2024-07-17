@@ -4,6 +4,10 @@ import uuid
 from PIL import Image
 from config import REALTIMEDB_URL, FIREBASE_CREDS_JSON_LOCATION
 from config import FIREBASE_CREDS_JSON_LOCATION, STORAGE_BUCKET_LOCATION
+import os
+import requests
+from io import BytesIO
+from zipfile import ZipFile
 
 # needs to be done only once
 cred = credentials.Certificate(FIREBASE_CREDS_JSON_LOCATION)
@@ -35,23 +39,6 @@ def storeDesignToDb(design_name, title, tags, related_links, image_links, design
             return f"Design with ID {design_id} added successfully"
     except Exception as e:
         return f'Error uploading design data: {e}'
-
-def updateImageLinksOnDesignWithId(image_links, design_id):
-    ref = db.reference('/Designs')
-
-    data = {
-        'image_links': image_links      
-    }
-
-    try:
-        if design_id:
-            design_ref = ref.child(design_id)
-            design_ref.update(data)
-            return f"Image links for design with ID {design_id} updated successfully"
-        else:
-            return "Design ID is required to update image links"
-    except Exception as e:
-        return f'Error updating image links: {e}'
 
 def getAllDesigns():
     ref = db.reference('/Designs')
@@ -125,4 +112,47 @@ def deleteFromStorageByUrl(download_url):
     return True
 
 
+def createDesignZip(design):
+    try:
+        # Create a temporary directory
+        temp_dir = f"temp_{design['design_name']}_{design['design_id'] or 'noID'}"
+        os.makedirs(temp_dir, exist_ok=True)
 
+        # Create and write text file
+        txt_content = f"""Design name: {design['design_name']}
+Design id: {design['design_id'] or 'N/A'}
+
+Tags: {', '.join(design['tags'])}
+Title: {design['title']}
+
+Related links:
+{os.linesep.join(design['related_links'])}"""
+
+        with open(f"{temp_dir}/design_info_{design['design_id']}.txt", 'w') as f:
+            f.write(txt_content)
+
+        # Download images
+        for i, url in enumerate(design['image_links']):
+            response = requests.get(url)
+            if response.status_code == 200:
+                with open(f"{temp_dir}/image_{i+1}.png", 'wb') as f:
+                    f.write(response.content)
+
+        # Create a zip file
+        memory_file = BytesIO()
+        with ZipFile(memory_file, 'w') as zf:
+            for root, dirs, files in os.walk(temp_dir):
+                for file in files:
+                    zf.write(os.path.join(root, file), file)
+
+        # Clean up the temporary directory
+        for file in os.listdir(temp_dir):
+            os.remove(os.path.join(temp_dir, file))
+        os.rmdir(temp_dir)
+
+        # Prepare the zip file for sending
+        memory_file.seek(0)
+        return memory_file
+    except Exception as e:
+        print(f"Error creating design zip: {str(e)}")
+        raise

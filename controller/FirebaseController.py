@@ -1,5 +1,5 @@
 import service.FirebaseService
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, send_file
 
 firebase_bp = Blueprint('firebase_bp', __name__)
 
@@ -12,11 +12,6 @@ def saveDesignToRealtimeDb():
 def deleteDesignFromDb():
     data = request.get_json()
     return service.FirebaseService.deleteDesign(**data)
-
-@firebase_bp.route('/db/updateImageLinks', methods=['POST'])
-def updateImageLinks():
-    data = request.get_json()
-    return service.FirebaseService.updateImageLinksOnDesignWithId(**data)
 
 @firebase_bp.route('/db/allDesigns', methods=['GET'])
 def getAllDesigns():
@@ -49,3 +44,18 @@ def deleteFromStorage():
         return jsonify({'msg': 'File deleted successfully'}), 200
     else:
         return jsonify({'msg': 'File does not exist or incorrect url'}), 400
+    
+
+@firebase_bp.route('/downloadDesign', methods=['POST'])
+def download_design():
+    design = request.json
+    try:
+        zip_file = service.FirebaseService.createDesignZip(design)
+        return send_file(
+            zip_file,
+            mimetype='application/zip',
+            as_attachment=True,
+            download_name=f"{design['design_name']}_{design['design_id'] or 'noID'}.zip"
+        )
+    except Exception as e:
+        return jsonify({'error': 'Error downloading file.'}), 500
