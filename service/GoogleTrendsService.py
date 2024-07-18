@@ -140,11 +140,13 @@ def fetchInterestByRegion(keyword):
 
 def fetchInterestOverTime(keyword):
     try:
-        # Load data from JSON file
-        with open('C:\\Users\\Kristina\\Documents\\Diplomski rad\\DesignerAppBackend\\sample JSONs\\ChartData.json', 'r') as file:
-            data = json.load(file)
+        if (keyword == ''):
+            with open('C:\\Users\\Kristina\\Documents\\Diplomski rad\\DesignerAppBackend\\sample JSONs\\ChartData.json', 'r') as file:
+                data = json.load(file)
+        else:
+            with open('C:\\Users\\Kristina\\Documents\\Diplomski rad\\DesignerAppBackend\\sample JSONs\\ChartData2.json', 'r') as file:
+                data = json.load(file)
 
-        # Extract and process the timeline data
         timeline_data = data['interest_over_time']['timeline_data']
         
         processed_data = []
