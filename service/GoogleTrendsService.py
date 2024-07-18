@@ -2,7 +2,7 @@ import serpapi, json, os
 from config import SERPAPI_API_KEY
 from datetime import datetime, timedelta
 import requests, json
-from flask import jsonify
+from flask import jsonify, request
 
 # change frequency to realtime for realtime searches,
 # delete the date field and add "cat": "all",
@@ -71,11 +71,19 @@ def fetchInterestByRegion2(keyword):
         else:
             raise
 
-def fetchInterestOverTime(keyword):
+def fetchInterestOverTime2(keyword):
+    if not keyword:
+        return jsonify({'error': 'Keyword is required'}), 400
+
+    end_date = datetime.now().strftime('%Y-%m-%d')
+    start_date = (datetime.now() - timedelta(days=5*365)).strftime('%Y-%m-%d')
+
+    url = f"https://serpapi.com/search.json?engine=google_trends&q={keyword}&date={start_date} {end_date}&api_key={SERPAPI_API_KEY}"
+
     try:
-        # Load data from JSON file
-        with open('C:\\Users\\Kristina\\Documents\\Diplomski rad\\DesignerAppBackend\\sample JSONs\\ChartData.json', 'r') as file:
-            data = json.load(file)
+        response = requests.get(url)
+        response.raise_for_status()
+        data = response.json()
 
         # Extract and process the timeline data
         timeline_data = data['interest_over_time']['timeline_data']
