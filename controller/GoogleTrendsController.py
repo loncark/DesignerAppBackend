@@ -22,3 +22,9 @@ def queryInterestByRegion():
     data = request.get_json()
     keyword = data.get('keyword')
     return service.GoogleTrendsService.fetchInterestByRegion(keyword)
+
+@gt_bp.route('/chart', methods=['POST'])
+def queryInterestOverTime():
+    data = request.get_json()
+    keyword = data.get('keyword')
+    return service.GoogleTrendsService.fetchInterestOverTime(keyword)

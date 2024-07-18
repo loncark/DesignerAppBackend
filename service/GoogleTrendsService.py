@@ -1,5 +1,8 @@
 import serpapi, json, os
 from config import SERPAPI_API_KEY
+from datetime import datetime, timedelta
+import requests, json
+from flask import jsonify
 
 # change frequency to realtime for realtime searches,
 # delete the date field and add "cat": "all",
@@ -68,6 +71,31 @@ def fetchInterestByRegion2(keyword):
         else:
             raise
 
+def fetchInterestOverTime(keyword):
+    try:
+        # Load data from JSON file
+        with open('C:\\Users\\Kristina\\Documents\\Diplomski rad\\DesignerAppBackend\\sample JSONs\\ChartData.json', 'r') as file:
+            data = json.load(file)
+
+        # Extract and process the timeline data
+        timeline_data = data['interest_over_time']['timeline_data']
+        
+        processed_data = []
+        for item in timeline_data:
+            date = datetime.fromtimestamp(int(item['timestamp']))
+            value = item['values'][0]['extracted_value']
+            processed_data.append({
+                'date': date.strftime('%Y-%m-%d'),
+                'value': value
+            })
+
+        return jsonify({'data': processed_data})
+
+    except Exception as e:
+        print(f"Error processing data: {str(e)}")
+        return jsonify({'error': 'Failed to process trend data'}), 500
+
+
 # TEST FUNCTIONS TO NOT DRAIN THE API LIMIT (45/mo for etsy, a lot for trademark, 100/mo for Trends, interest and related together)
 def fetchTrends(keyword, page):
     file_path = r"C:\Users\Kristina\Documents\Diplomski rad\DesignerAppBackend\sample JSONs\TrendPage1.json"
@@ -101,3 +129,27 @@ def fetchInterestByRegion(keyword):
         data = json.load(file)
     
     return data
+
+def fetchInterestOverTime(keyword):
+    try:
+        # Load data from JSON file
+        with open('C:\\Users\\Kristina\\Documents\\Diplomski rad\\DesignerAppBackend\\sample JSONs\\ChartData.json', 'r') as file:
+            data = json.load(file)
+
+        # Extract and process the timeline data
+        timeline_data = data['interest_over_time']['timeline_data']
+        
+        processed_data = []
+        for item in timeline_data:
+            date = datetime.fromtimestamp(int(item['timestamp']))
+            value = item['values'][0]['extracted_value']
+            processed_data.append({
+                'date': date.strftime('%Y-%m-%d'),
+                'value': value
+            })
+
+        return jsonify({'data': processed_data})
+
+    except Exception as e:
+        print(f"Error processing data: {str(e)}")
+        return jsonify({'error': 'Failed to process trend data'}), 500
