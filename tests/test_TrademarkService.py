@@ -29,7 +29,3 @@ class TestTrademarkService(unittest.TestCase):
         result = filterJson(input_data)
 
         self.assertEqual(result, expected_data)
-
-
-if __name__ == '__main__':
-    unittest.main()
