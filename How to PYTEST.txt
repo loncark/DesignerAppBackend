@@ -1,0 +1,6 @@
+1. Create tests folder in the root folder.
+2. Create conftest.py and describe your fixtures (app, client).
+3. Create test_{nameOfTest}.py test file.
+4. Define a function and put in its parameters the fixture it needs (app for application logic, client for requests).
+5. Make assertions.
+6. Run pytest tests/test_{nameOfTest}.py.
