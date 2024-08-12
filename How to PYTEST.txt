@@ -3,4 +3,4 @@
 3. Create test_{nameOfTest}.py test file.
 4. Define a function and put in its parameters the fixture it needs (app for application logic, client for requests).
 5. Make assertions.
-6. Run pytest tests/test_{nameOfTest}.py.
+6. Run pytest tests/test_{nameOfTest}.py or just pytest tests to run them all.

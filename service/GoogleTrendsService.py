@@ -7,7 +7,7 @@ from flask import jsonify, request
 # change frequency to realtime for realtime searches,
 # delete the date field and add "cat": "all",
 
-def fetchTrends2(date, country_code):
+def fetchTrends(date, country_code):
     params = {
         "engine": "google_trends_trending_now",
         "frequency": "daily",
@@ -29,7 +29,7 @@ def fetchTrends2(date, country_code):
         else:
             raise
 
-def fetchRelatedQueries2(keyword):
+def fetchRelatedQueries(keyword):
     params = {
         "engine": "google_trends",
         "q": keyword,
@@ -50,7 +50,7 @@ def fetchRelatedQueries2(keyword):
         else:
             raise
 
-def fetchInterestByRegion2(keyword):
+def fetchInterestByRegion(keyword):
     params = {
         "engine": "google_trends",
         "q": keyword,
@@ -71,7 +71,7 @@ def fetchInterestByRegion2(keyword):
         else:
             raise
 
-def fetchInterestOverTime2(keyword):
+def fetchInterestOverTime(keyword):
     if not keyword:
         return jsonify({'error': 'Keyword is required'}), 400
 
@@ -105,7 +105,7 @@ def fetchInterestOverTime2(keyword):
 
 
 # TEST FUNCTIONS TO NOT DRAIN THE API LIMIT (45/mo for etsy, a lot for trademark, 100/mo for Trends, interest and related together)
-def fetchTrends(keyword, page):
+def fetchTrends2(keyword, page):
     file_path = r"C:\Users\Kristina\Documents\Diplomski rad\DesignerAppBackend\sample JSONs\TrendPage1.json"
     
     if not os.path.exists(file_path):
@@ -116,7 +116,7 @@ def fetchTrends(keyword, page):
     
     return data
 
-def fetchRelatedQueries(keyword):
+def fetchRelatedQueries2(keyword):
     if(keyword == ''):
         file_path = r"C:\Users\Kristina\Documents\Diplomski rad\DesignerAppBackend\sample JSONs\KeywordsRelated.json"
     else:
@@ -131,7 +131,7 @@ def fetchRelatedQueries(keyword):
     
     return data
 
-def fetchInterestByRegion(keyword):
+def fetchInterestByRegion2(keyword):
     if(keyword == ''):
         file_path = r"C:\Users\Kristina\Documents\Diplomski rad\DesignerAppBackend\sample JSONs\KeywordsInterest.json"
     else:
@@ -145,7 +145,7 @@ def fetchInterestByRegion(keyword):
     
     return data
 
-def fetchInterestOverTime(keyword):
+def fetchInterestOverTime2(keyword):
     try:
         if (keyword == ''):
             with open('C:\\Users\\Kristina\\Documents\\Diplomski rad\\DesignerAppBackend\\sample JSONs\\ChartData.json', 'r') as file:

@@ -2,7 +2,7 @@ from config import RAPIDAPI_ETSY_URL, RAPIDAPI_API_KEY
 
 import requests, os, json
 
-def fetchProducts2(keyword, page):
+def fetchProducts(keyword, page):
 
     querystring = {"query": keyword, "page" : page}
 
@@ -15,7 +15,7 @@ def fetchProducts2(keyword, page):
 
     return response.json()
 
-def fetchProducts(keyword, page):
+def fetchProducts2(keyword, page):
     file_path = r"C:\Users\Kristina\Documents\Diplomski rad\DesignerAppBackend\sample JSONs\EtsyPage1.json"
     
     if not os.path.exists(file_path):
