@@ -1,0 +1,18 @@
+{
+    "count": 1,
+    "items": [
+        {
+            "description": "Hair accessories, namely, hair ties, hair bands, ponytail holders",
+            "keyword": "JUST DO IT",
+            "owners": [
+                {
+                    "address1": "1 Bowerman Dr.",
+                    "city": "Beaverton",
+                    "country": "US",
+                    "name": "Nike, Inc."
+                }
+            ],
+            "status_label": "Live/Registered"
+        }
+    ]
+}
