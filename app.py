@@ -7,15 +7,19 @@ from controller.GoogleTrendsController import gt_bp
 from controller.FirebaseController import firebase_bp
 from controller.EtsyController import etsy_bp
 
-app = Flask(__name__)
-CORS(app)
+def create_app():
+    app = Flask(__name__)
+    CORS(app)
 
-app.register_blueprint(gemini_bp)
-app.register_blueprint(trademark_bp)
-app.register_blueprint(sd_bp)
-app.register_blueprint(gt_bp)
-app.register_blueprint(firebase_bp)
-app.register_blueprint(etsy_bp)
+    app.register_blueprint(gemini_bp)
+    app.register_blueprint(trademark_bp)
+    app.register_blueprint(sd_bp)
+    app.register_blueprint(gt_bp)
+    app.register_blueprint(firebase_bp)
+    app.register_blueprint(etsy_bp)
+
+    return app
 
 if __name__ == '__main__':
+    app = create_app()
     app.run(debug=True)
