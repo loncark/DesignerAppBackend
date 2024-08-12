@@ -1,7 +1,7 @@
-import json, requests
+import json
 import unittest, os
 from unittest.mock import patch, Mock
-from service.TrademarkService import fetchAndFilterResponse, fetchResponse, filterJson
+from service.TrademarkService import fetchResponse, filterJson
 
 class TestTrademarkService(unittest.TestCase):
     @patch('requests.get')
