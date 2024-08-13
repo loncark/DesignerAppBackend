@@ -2,6 +2,8 @@ import unittest
 from flask import Flask
 from unittest.mock import patch, Mock
 from controller.FirebaseController import firebase_bp
+import io
+from PIL import Image
 
 class TestGetAllDesignsRoute(unittest.TestCase):
 
@@ -196,3 +198,48 @@ class TestGetAllDesignsRoute(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn("Error deleting design data: Test error", response.get_data(as_text=True))
 
+    @patch('service.FirebaseService.storage.bucket')
+    @patch('uuid.uuid4')
+    def test_storeToStorageSuccess(self, mock_uuid, mock_storage_bucket):
+        mock_uuid.return_value = "mocked-uuid"
+
+        mock_bucket = Mock()
+        mock_storage_bucket.return_value = mock_bucket
+        mock_blob = Mock()
+        mock_bucket.blob.return_value = mock_blob
+        mock_blob.public_url = "https://storage.googleapis.com/bucket-name/images/test-design-id/mocked-uuid.png"
+
+        img = Image.new('RGB', (60, 30), color = 'red')
+        img_byte_arr = io.BytesIO()
+        img.save(img_byte_arr, format='PNG')
+        img_byte_arr = img_byte_arr.getvalue()
+
+        response = self.client.post('/storage', 
+                            data={'design_id': 'test-design-id', 'image': (io.BytesIO(img_byte_arr), 'test_image.png')},
+                            content_type='multipart/form-data')
+        
+        mock_storage_bucket.assert_called_once()
+        mock_bucket.blob.assert_called_once_with('images/test-design-id/mocked-uuid.png')
+        mock_blob.upload_from_filename.assert_called_once()
+        mock_blob.make_public.assert_called_once()
+
+        self.assertEqual(response.status_code, 200)
+        expected_response = {"url": "https://storage.googleapis.com/bucket-name/images/test-design-id/mocked-uuid.png"}
+        self.assertEqual(response.get_json(), expected_response)
+
+    @patch('service.FirebaseService.storage.bucket')
+    def test_storeToStorageException(self, mock_storage_bucket):
+        mock_storage_bucket.side_effect = Exception("Test storage error")
+
+        img = Image.new('RGB', (60, 30), color = 'red')
+        img_byte_arr = io.BytesIO()
+        img.save(img_byte_arr, format='PNG')
+        img_byte_arr = img_byte_arr.getvalue()
+
+        response = self.client.post('/storage', 
+                            data={'design_id': 'test-design-id', 'image': (io.BytesIO(img_byte_arr), 'test_image.png')},
+                            content_type='multipart/form-data')
+        
+        mock_storage_bucket.assert_called_once()
+        self.assertEqual(response.status_code, 200)  # Note: Your current implementation always returns 200
+        self.assertIn("Error uploading image: Test storage error", response.get_data(as_text=True))
