@@ -73,10 +73,9 @@ def deleteDesign(design_id):
 
 # STORAGE
 
-bucket = storage.bucket()
-
 def storeToStorage(image_file, design_id):
     try:
+        bucket = storage.bucket()
         image = Image.open(image_file)
 
         # Save image to a temporary location
@@ -93,6 +92,7 @@ def storeToStorage(image_file, design_id):
     
 def deleteFromStorageByUrl(download_url):
     try:
+        bucket = storage.bucket()
         file_name = download_url.split('/')[-2] + '/' + download_url.split('/')[-1]
         print(file_name)
         blob = bucket.blob(file_name)

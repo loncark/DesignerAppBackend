@@ -120,29 +120,31 @@ class TestFirebaseService(unittest.TestCase):
     @patch('firebase_admin.storage.bucket')
     @patch('PIL.Image.open')
     @patch('uuid.uuid4')
-    def test_storeToStorage(self, mock_uuid, mock_image_open, mock_bucket):
+    def test_storeToStorage(self, mock_uuid, mock_image_open, mock_storage_bucket):
         mock_image = Mock()
         mock_image_open.return_value = mock_image
-
         mock_uuid.return_value = 'test-uuid'
-
+        
+        mock_bucket = Mock()
         mock_blob = Mock()
-        mock_bucket.return_value.blob.return_value = mock_blob
-
+        mock_bucket.blob.return_value = mock_blob
+        mock_storage_bucket.return_value = mock_bucket
+        
+        mock_blob.public_url = 'https://example.com/test-image.png'
+        
         image_file = 'test_image.png'
         design_id = '12345'
         temp_path = '/tmp/image.png'
-
+        
         result = storeToStorage(image_file, design_id)
-
+        
         mock_image.save.assert_called_once_with(temp_path, format='PNG')
-
-        mock_bucket.return_value.blob.assert_called_once_with(f'images/{design_id}/test-uuid.png')
+        mock_bucket.blob.assert_called_once_with(f'images/{design_id}/test-uuid.png')
         mock_blob.upload_from_filename.assert_called_once_with(temp_path)
-
         mock_blob.make_public.assert_called_once()
-        self.assertEqual(result, mock_blob.public_url)
-
+        
+        self.assertEqual(result, 'https://example.com/test-image.png')
+        
         # exception case
         mock_image.save.side_effect = Exception("Test exception")
         result = storeToStorage(image_file, design_id)
