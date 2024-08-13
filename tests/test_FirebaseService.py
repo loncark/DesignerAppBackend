@@ -152,6 +152,43 @@ class TestFirebaseService(unittest.TestCase):
             result = storeToStorage(image_file, design_id)
             self.assertEqual(result, 'Error uploading image: Test exception')
 
+    @patch('firebase_admin.storage.bucket')
+    def test_deleteFromStorageByUrl(self, mock_storage_bucket):
+        download_url = "https://storage.googleapis.com/bucket_name/folder/file.txt"
+
+        mock_bucket = Mock()
+        mock_blob = Mock()
+
+        mock_storage_bucket.return_value = mock_bucket
+        mock_bucket.blob.return_value = mock_blob
+        mock_blob.exists.return_value = True  
+
+        result = deleteFromStorageByUrl(download_url)
+
+        mock_storage_bucket.assert_called_once() 
+        mock_bucket.blob.assert_called_once_with('folder/file.txt') 
+        mock_blob.exists.assert_called_once()  
+        mock_blob.delete.assert_called_once()  
+        self.assertTrue(result) 
+
+        # file does not exist case
+        mock_storage_bucket.reset_mock()
+        mock_bucket.reset_mock()
+        mock_blob.reset_mock()
+
+        mock_storage_bucket.return_value = mock_bucket
+        mock_bucket.blob.return_value = mock_blob
+        mock_blob.exists.return_value = False
+
+        result = deleteFromStorageByUrl(download_url)
+
+        mock_storage_bucket.assert_called_once()
+        mock_bucket.blob.assert_called_once_with('folder/file.txt')
+        mock_blob.exists.assert_called_once()
+        mock_blob.delete.assert_not_called()
+        self.assertTrue(result)
+
+
     @patch('os.makedirs')
     @patch('builtins.open', new_callable=mock_open)
     @patch('requests.get')
