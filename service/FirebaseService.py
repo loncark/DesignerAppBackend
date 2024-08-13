@@ -104,13 +104,12 @@ def deleteFromStorageByUrl(download_url):
             return True
         else:
             print("File not found.") 
+            return False
 
     except Exception as e:
         print(f"Error deleting file: {e}")
         return False
-
-    return True
-
+    
 
 def createDesignZip(design):
     try:

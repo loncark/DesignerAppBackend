@@ -243,3 +243,47 @@ class TestGetAllDesignsRoute(unittest.TestCase):
         mock_storage_bucket.assert_called_once()
         self.assertEqual(response.status_code, 200)  # Note: Your current implementation always returns 200
         self.assertIn("Error uploading image: Test storage error", response.get_data(as_text=True))
+
+    @patch('service.FirebaseService.storage.bucket')
+    def test_deleteFromStorageSuccess(self, mock_storage_bucket):
+        mock_bucket = Mock()
+        mock_storage_bucket.return_value = mock_bucket
+        mock_blob = Mock()
+        mock_bucket.blob.return_value = mock_blob
+
+        mock_blob.exists.return_value = True
+
+        test_url = 'https://storage.googleapis.com/bucket-name/images/design-id/mocked-uuid.png'
+
+        response = self.client.delete('/storageDelete',
+                                      json={'imgUrl': test_url})
+
+        mock_storage_bucket.assert_called_once()
+        mock_bucket.blob.assert_called_once_with('design-id/mocked-uuid.png')
+        mock_blob.exists.assert_called_once()
+        mock_blob.delete.assert_called_once()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_json(), {'msg': 'File deleted successfully'})
+
+    @patch('service.FirebaseService.storage.bucket')
+    def test_deleteFromStorageFileNotExists(self, mock_storage_bucket):
+        mock_bucket = Mock()
+        mock_storage_bucket.return_value = mock_bucket
+        mock_blob = Mock()
+        mock_bucket.blob.return_value = mock_blob
+
+        mock_blob.exists.return_value = False
+
+        test_url = 'https://storage.googleapis.com/bucket-name/images/design-id/non-existent-file.png'
+
+        response = self.client.delete('/storageDelete',
+                                      json={'imgUrl': test_url})
+
+        mock_storage_bucket.assert_called_once()
+        mock_bucket.blob.assert_called_once_with('design-id/non-existent-file.png')
+        mock_blob.exists.assert_called_once()
+        mock_blob.delete.assert_not_called()  # Since the file doesn't exist
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.get_json(), {'msg': 'File does not exist or incorrect url'})

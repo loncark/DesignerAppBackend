@@ -186,7 +186,7 @@ class TestFirebaseService(unittest.TestCase):
         mock_bucket.blob.assert_called_once_with('folder/file.txt')
         mock_blob.exists.assert_called_once()
         mock_blob.delete.assert_not_called()
-        self.assertTrue(result)
+        self.assertFalse(result)
 
 
     @patch('os.makedirs')
