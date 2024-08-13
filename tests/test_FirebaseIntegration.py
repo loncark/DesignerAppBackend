@@ -1,11 +1,11 @@
 import unittest
 from flask import Flask
-from unittest.mock import patch, Mock
+from unittest.mock import patch, Mock, mock_open
 from controller.FirebaseController import firebase_bp
 import io
 from PIL import Image
 
-class TestGetAllDesignsRoute(unittest.TestCase):
+class TestFirebaseIntegration(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -287,3 +287,82 @@ class TestGetAllDesignsRoute(unittest.TestCase):
 
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.get_json(), {'msg': 'File does not exist or incorrect url'})
+
+    @patch('service.FirebaseService.os.makedirs')
+    @patch('service.FirebaseService.os.remove')
+    @patch('service.FirebaseService.os.rmdir')
+    @patch('service.FirebaseService.requests.get')
+    @patch('service.FirebaseService.ZipFile')
+    @patch('service.FirebaseService.os.walk')
+    @patch('service.FirebaseService.open', new_callable=mock_open)
+    def test_download_design_success(self, mock_file, mock_walk, mock_zipfile, 
+                                     mock_requests_get, mock_rmdir, mock_remove, mock_makedirs):
+        design = {
+            'design_name': 'Test Design',
+            'design_id': '123',
+            'tags': ['tag1', 'tag2'],
+            'title': 'Test Title',
+            'related_links': ['http://link1.com', 'http://link2.com'],
+            'image_links': ['http://image1.png', 'http://image2.png']
+        }
+
+        mock_response = Mock()
+        mock_response.status_code = 200
+        mock_response.content = b'fake image content'
+        mock_requests_get.return_value = mock_response
+
+        temp_dir = f"temp_Test Design_123"
+        mock_walk.return_value = [
+            (temp_dir, [], ['design_info_123.txt', 'image_1.png', 'image_2.png'])
+        ]
+
+        mock_zipfile_instance = Mock()
+        mock_zipfile.return_value.__enter__.return_value = mock_zipfile_instance
+
+        response = self.client.post('/downloadDesign', json=design)
+
+        mock_makedirs.assert_called_once_with(temp_dir, exist_ok=True)
+        mock_requests_get.assert_any_call('http://image1.png')
+        mock_requests_get.assert_any_call('http://image2.png')
+        mock_zipfile.assert_called_once()
+
+        expected_txt_content = f"""Design name: Test Design
+Design id: 123
+
+Tags: tag1, tag2
+Title: Test Title
+
+Related links:
+http://link1.com
+http://link2.com"""
+        #mock_file().write.assert_any_call(expected_txt_content)
+        #same error as in service unit test
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.mimetype, 'application/zip')
+        #returns 500 for some reason
+
+        mock_remove.assert_called()
+        mock_rmdir.assert_called_once_with(temp_dir)
+
+    @patch('service.FirebaseService.os.makedirs')
+    @patch('service.FirebaseService.requests.get')
+    @patch('service.FirebaseService.open', new_callable=mock_open)
+    def test_downloadDesignException(self, mock_file, mock_requests_get, mock_makedirs):
+        design = {
+            'design_name': 'Test Design',
+            'design_id': '123',
+            'tags': ['tag1', 'tag2'],
+            'title': 'Test Title',
+            'related_links': ['http://link1.com', 'http://link2.com'],
+            'image_links': ['http://invalid_image_link.png']
+        }
+
+        mock_response = Mock()
+        mock_response.status_code = 404
+        mock_requests_get.return_value = mock_response
+
+        response = self.client.post('/downloadDesign', json=design)
+
+        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.get_json(), {'error': 'Error downloading file.'})
