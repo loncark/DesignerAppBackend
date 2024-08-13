@@ -166,3 +166,33 @@ class TestGetAllDesignsRoute(unittest.TestCase):
         mock_db_reference.assert_called_once_with('/Designs')
         self.assertEqual(result.status_code, 500)
         self.assertIn("500 Internal Server Error", result.get_data(as_text=True))
+        
+    @patch('firebase_admin.db.reference')
+    def test_deleteDesignWhenOneExists(self, mock_db_reference):
+        mock_ref = Mock()
+        mock_db_reference.return_value = mock_ref
+        
+        design_id = "test_id_1"
+        
+        response = self.client.delete(f'/db/deleteDesign', json={'design_id': design_id})
+        
+        mock_db_reference.assert_called_once_with(f'Designs/{design_id}')
+        mock_ref.delete.assert_called_once()
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(f"Design with ID {design_id} deleted successfully", response.get_data(as_text=True))
+
+    @patch('firebase_admin.db.reference')
+    def test_deleteDesignException(self, mock_db_reference):
+        mock_ref = Mock()
+        mock_db_reference.return_value = mock_ref
+        mock_ref.delete.side_effect = Exception("Test error")
+        
+        design_id = "test_id_2"
+        
+        response = self.client.delete(f'/db/deleteDesign', json={'design_id': design_id})
+        
+        mock_db_reference.assert_called_once_with(f'Designs/{design_id}')
+        mock_ref.delete.assert_called_once()
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("Error deleting design data: Test error", response.get_data(as_text=True))
+
