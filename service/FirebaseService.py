@@ -18,7 +18,7 @@ firebase_admin.initialize_app(cred, {
 
 # REALTIME DATABASE
 
-def storeDesignToDb(design_name, title, tags, related_links, image_links, design_id):
+def storeDesignToDb(design_name, title, tags, related_links, image_links, description, design_id):
     ref = db.reference('/Designs')
 
     data = {
@@ -26,7 +26,8 @@ def storeDesignToDb(design_name, title, tags, related_links, image_links, design
         'title': title,
         'tags': tags,
         'related_links': related_links,
-        'image_links': image_links      
+        'image_links': image_links,
+        'description': description      
     }
 
     try:
@@ -53,7 +54,8 @@ def getAllDesigns():
                     'related_links': design_data.get('related_links', []),
                     'image_links': design_data.get('image_links', []),
                     'tags': design_data.get('tags', []),
-                    'title': design_data.get('title', '')
+                    'title': design_data.get('title', ''),
+                    'description': design_data.get('description', '')
                 })
             return designs_with_ids
         else:
@@ -123,6 +125,7 @@ Design id: {design['design_id'] or 'N/A'}
 
 Tags: {', '.join(design['tags'])}
 Title: {design['title']}
+Description: {design['description']}
 
 Related links:
 {os.linesep.join(design['related_links'])}"""
