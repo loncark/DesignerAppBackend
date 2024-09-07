@@ -9,7 +9,7 @@ from flask import jsonify
 
 # LEAVE global_test=True TO NOT DRAIN THE API LIMIT (45/mo for etsy, a lot for trademark, 100/mo for Trends, interest and related together)
 
-global_test=False
+global_test=True
 
 def fetchTrends(date, country_code, test=global_test):
     if test:
