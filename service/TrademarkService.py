@@ -1,8 +1,6 @@
 import requests
-import sys, os
 import json
 from urllib.parse import quote
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from config import RAPIDAPI_API_KEY, TESS_BASE_URL
 
 def fetchAndFilterResponse(prompt):
@@ -14,8 +12,8 @@ def fetchResponse(prompt):
       "X-RapidAPI-Host": "uspto-trademark.p.rapidapi.com"
     }
 
-    encoded_prompt = quote(prompt)
-    url = TESS_BASE_URL + f"v1/trademarkSearch/{encoded_prompt}/active"
+    encodedPrompt = quote(prompt)
+    url = TESS_BASE_URL + f"v1/trademarkSearch/{encodedPrompt}/active"
 
     response = requests.get(url, headers=headers)
 
@@ -23,29 +21,29 @@ def fetchResponse(prompt):
 
 
 def filterJson(data):
-  transformed_data = {}
-  transformed_data["count"] = data["count"]
-  transformed_data["items"] = []
+  transformedData = {}
+  transformedData["count"] = data["count"]
+  transformedData["items"] = []
 
   for item in data["items"]:
-    new_item = {}
-    new_item["description"] = item["description"]
-    new_item["keyword"] = item["keyword"]
-    new_item["owners"] = []
+    newItem = {}
+    newItem["description"] = item["description"]
+    newItem["keyword"] = item["keyword"]
+    newItem["owners"] = []
 
     for owner in item["owners"]:
-      owner_data = {
+      ownerData = {
           "address1": owner.get("address1"),
           "city": owner.get("city"),
           "country": owner.get("country"),
           "name": owner.get("name"),
       }
-      new_item["owners"].append(owner_data)
+      newItem["owners"].append(ownerData)
 
-    new_item["status_label"] = item["status_label"]
-    transformed_data["items"].append(new_item)
+    newItem["status_label"] = item["status_label"]
+    transformedData["items"].append(newItem)
     
-  return transformed_data
+  return transformedData
 
 
 def testFilterJson():
@@ -145,8 +143,5 @@ def testFilterJson():
 }
       """)
 
-	# Transform the data
-	transformed_data = filterJson(original_data)
-
-	# Print the transformed JSON (optional)
-	print(json.dumps(transformed_data, indent=4))
+	transformedData = filterJson(original_data)
+	print(json.dumps(transformedData, indent=4))
