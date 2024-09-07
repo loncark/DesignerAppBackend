@@ -33,6 +33,14 @@ class TestFirebaseService(unittest.TestCase):
         mockDesignRef.set.assert_called_once()
         self.assertEqual(result, "Design with ID 12345 added successfully")
 
+        # case 3
+        mockDesignRef.get.side_effect = Exception("Test exception")
+
+        result = storeDesignToDb(design_name, title, tags, related_links, image_links, description, design_id)
+
+        self.assertEqual(result, 'Error uploading design data: Test exception')
+
+
 
     @patch('firebase_admin.db.reference')
     def test_getAllDesigns(self, mock_db_reference):
@@ -72,14 +80,19 @@ class TestFirebaseService(unittest.TestCase):
 
         result = getAllDesigns()
         
+        mockDbRef.get.assert_called_once()
+        mock_db_reference.assert_called_once()
         self.assertEqual(result, expectedResult)
 
         # case 2
+        mock_db_reference.reset_mock()
         mockDbRef.get.return_value = None
         expectedResult = []
 
         result = getAllDesigns()
 
+        mockDbRef.get.assert_called_once()
+        mock_db_reference.assert_called_once()
         self.assertEqual(result, expectedResult)
 
         # case 3
