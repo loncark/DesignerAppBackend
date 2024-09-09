@@ -47,22 +47,25 @@ def getAllDesigns():
     try:
         designs = dbRef.get()
         if designs:
-            designsWithIds = []
-            for designId, designData in designs.items():
-                designsWithIds.append({
-                    'design_name': designData.get('design_name', ''),
-                    'design_id': designId,
-                    'related_links': designData.get('related_links', []),
-                    'image_links': designData.get('image_links', []),
-                    'tags': designData.get('tags', []),
-                    'title': designData.get('title', ''),
-                    'description': designData.get('description', '')
-                })
-            return designsWithIds
+            return designsWithIds(designs)
         else:
             return []
     except Exception as e:
         return f'Error retrieving designs: {e}'
+    
+def designsWithIds(designs):
+    newDesigns = []
+    for designId, designData in designs.items():
+        newDesigns.append({
+            'design_name': designData.get('design_name', ''),
+            'design_id': designId,
+            'related_links': designData.get('related_links', []),
+            'image_links': designData.get('image_links', []),
+            'tags': designData.get('tags', []),
+            'title': designData.get('title', ''),
+            'description': designData.get('description', '')
+        })
+    return newDesigns
 
 def deleteDesign(design_id):
     dbRef = db.reference(f'Designs/{design_id}')
@@ -73,7 +76,7 @@ def deleteDesign(design_id):
         
     except Exception as e:
         return f'Error deleting design data: {e}'
-
+    
 # STORAGE
 
 def storeToStorage(image_file, design_id):
