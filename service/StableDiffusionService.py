@@ -3,14 +3,14 @@ from config import SD_TXT2IMG_URL, SD_IMG2IMG_URL
 import json
 
 async def txt2img(payload):
-  return await call_api(SD_TXT2IMG_URL, payload)
+  return await generateImage(SD_TXT2IMG_URL, payload)
 
         
 async def img2img(payload):
-  return await call_api(SD_IMG2IMG_URL, payload)
+  return await generateImage(SD_IMG2IMG_URL, payload)
 
 
-async def call_api(url, payload):  # 50 minutes timeout
+async def generateImage(url, payload):  # 50 minutes timeout
     async with aiohttp.ClientSession() as session:
         try:
             async with session.post(url, json=payload, timeout=aiohttp.ClientTimeout(total=3000)) as response:
