@@ -26,7 +26,12 @@ def fetchProducts(keyword, page, test=global_test):
             "x-rapidapi-host": "etsy-api2.p.rapidapi.com"
         }
 
-        response = requests.get(RAPIDAPI_ETSY_URL, headers=headers, params=queryString)
+        try:
+            response = requests.get(RAPIDAPI_ETSY_URL, headers=headers, params=queryString)
+        
+        except Exception as e:
+            print(e)
+            return json.dumps({"Exception": e})
 
         return response.json()
     

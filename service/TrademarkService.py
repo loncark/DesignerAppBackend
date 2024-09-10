@@ -15,8 +15,13 @@ def fetchResponse(prompt):
     encodedPrompt = quote(prompt)
     url = TESS_BASE_URL + f"v1/trademarkSearch/{encodedPrompt}/active"
 
-    response = requests.get(url, headers=headers)
+    try:
+      response = requests.get(url, headers=headers)
 
+    except Exception as e:
+      print(e)
+      return json.dumps({"Exception": e})
+    
     return response.json()
 
 
