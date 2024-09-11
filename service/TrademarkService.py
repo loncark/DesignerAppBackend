@@ -4,9 +4,9 @@ from urllib.parse import quote
 from config import RAPIDAPI_API_KEY, TESS_BASE_URL
 
 def fetchAndFilterResponse(prompt):
-    return filterJson(fetchResponse(prompt))
+    return filterJson(fetchTrademarks(prompt))
 
-def fetchResponse(prompt):
+def fetchTrademarks(prompt):
     headers = {
       "X-RapidAPI-Key": RAPIDAPI_API_KEY,
       "X-RapidAPI-Host": "uspto-trademark.p.rapidapi.com"

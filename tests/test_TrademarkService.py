@@ -1,18 +1,18 @@
 import json
 import unittest
 from unittest.mock import patch, Mock
-from service.TrademarkService import fetchResponse, filterJson
+from service.TrademarkService import fetchTrademarks, filterJson
 from config import RAPIDAPI_API_KEY
 
 class TestTrademarkService(unittest.TestCase):
     @patch('requests.get')
-    def test_fetchResponse(self, mock_get):
+    def test_fetchTrademarks(self, mock_get):
         mockResponse = Mock()
         mockResponse.json.return_value = {"whatever":"whatever"}
 
         mock_get.return_value = mockResponse
 
-        data = fetchResponse("prompt")
+        data = fetchTrademarks("prompt")
         mock_get.assert_called_with("https://uspto-trademark.p.rapidapi.com/v1/trademarkSearch/prompt/active", headers={'X-RapidAPI-Key': RAPIDAPI_API_KEY, 'X-RapidAPI-Host': 'uspto-trademark.p.rapidapi.com'})
         self.assertEqual(data, {"whatever":"whatever"})
 
