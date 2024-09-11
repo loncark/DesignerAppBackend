@@ -1,7 +1,6 @@
 import serpapi, json
 from config import SERPAPI_API_KEY
 from datetime import datetime, timedelta
-import requests, json
 from flask import jsonify
 
 # change frequency to realtime for realtime searches,
