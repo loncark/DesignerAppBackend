@@ -117,24 +117,35 @@ def fetchInterestOverTime(keyword, test=global_test):
             endDate = datetime.now().strftime('%Y-%m-%d')
             startDate = (datetime.now() - timedelta(days=5*365)).strftime('%Y-%m-%d')
 
-            url = f"https://serpapi.com/search.json?engine=google_trends&q={keyword}&date={startDate} {endDate}&api_key={SERPAPI_API_KEY}"
+            params = {
+                "engine": "google_trends",
+                "q": keyword,
+                "data_type": "TIMESERIES",
+                "api_key": SERPAPI_API_KEY,
+                "date": f"{startDate} {endDate}"
+            }
 
-            response = requests.get(url)
-            data = response.json()
+            search = serpapi.search(params)
+            data = search.as_dict()
 
-        timeline_data = data['interest_over_time']['timeline_data']
-        
-        processed_data = []
-        for item in timeline_data:
-            date = datetime.fromtimestamp(int(item['timestamp']))
-            value = item['values'][0]['extracted_value']
-            processed_data.append({
-                'date': date.strftime('%Y-%m-%d'),
-                'value': value
-            })
+        processed_data = extractDatesAndValues(data)
 
         return jsonify({'data': processed_data})
 
     except Exception as e:
         print("Error processing trend data: ", e)
         return jsonify({'error': "Error processing trend data."})
+    
+def extractDatesAndValues(data):
+    timeline_data = data['interest_over_time']['timeline_data']
+        
+    processed_data = []
+    for item in timeline_data:
+        date = datetime.fromtimestamp(int(item['timestamp']))
+        value = item['values'][0]['extracted_value']
+        processed_data.append({
+            'date': date.strftime('%Y-%m-%d'),
+            'value': value
+        })
+
+    return processed_data
