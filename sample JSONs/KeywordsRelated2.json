@@ -1,0 +1,377 @@
+{
+    "related_queries": {
+      "rising": [
+        {
+          "extracted_value": 9150,
+          "link": "https://trends.google.com/trends/explore?q=fisher+price+wake+up+and+learn+coffee+mug&date=today+12-m",
+          "query": "22fisher price wake up and learn coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=fisher+price+wake+up+and+learn+coffee+mug&tz=420",
+          "value": "Breakout"
+        },
+        {
+          "extracted_value": 8450,
+          "link": "https://trends.google.com/trends/explore?q=dark+brandon+coffee+mug&date=today+12-m",
+          "query": "22dark brandon coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=dark+brandon+coffee+mug&tz=420",
+          "value": "Breakout"
+        },
+        {
+          "extracted_value": 5250,
+          "link": "https://trends.google.com/trends/explore?q=wake+up+and+learn+coffee+mug&date=today+12-m",
+          "query": "22wake up and learn coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=wake+up+and+learn+coffee+mug&tz=420",
+          "value": "Breakout"
+        },
+        {
+          "extracted_value": 5150,
+          "link": "https://trends.google.com/trends/explore?q=trump+mugshot+coffee+mug&date=today+12-m",
+          "query": "22 mugshot coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=trump+mugshot+coffee+mug&tz=420",
+          "value": "Breakout"
+        },
+        {
+          "extracted_value": 4050,
+          "link": "https://trends.google.com/trends/explore?q=fisher+price+coffee+mug&date=today+12-m",
+          "query": "22fisher price coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=fisher+price+coffee+mug&tz=420",
+          "value": "+4,050%"
+        },
+        {
+          "extracted_value": 700,
+          "link": "https://trends.google.com/trends/explore?q=owala+coffee+mug&date=today+12-m",
+          "query": "22owala coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=owala+coffee+mug&tz=420",
+          "value": "+700%"
+        },
+        {
+          "extracted_value": 300,
+          "link": "https://trends.google.com/trends/explore?q=smeg+coffee+mug&date=today+12-m",
+          "query": "22smeg coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=smeg+coffee+mug&tz=420",
+          "value": "+300%"
+        },
+        {
+          "extracted_value": 250,
+          "link": "https://trends.google.com/trends/explore?q=eeffoc+coffee+mug&date=today+12-m",
+          "query": "22eeffoc coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=eeffoc+coffee+mug&tz=420",
+          "value": "+250%"
+        },
+        {
+          "extracted_value": 250,
+          "link": "https://trends.google.com/trends/explore?q=trump+coffee+mug&date=today+12-m",
+          "query": "22trump coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=trump+coffee+mug&tz=420",
+          "value": "+250%"
+        },
+        {
+          "extracted_value": 190,
+          "link": "https://trends.google.com/trends/explore?q=estia+coffee+mug&date=today+12-m",
+          "query": "222estia coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=estia+coffee+mug&tz=420",
+          "value": "+190%"
+        },
+        {
+          "extracted_value": 160,
+          "link": "https://trends.google.com/trends/explore?q=stanley&date=today+12-m",
+          "query": "stanley",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=stanley&tz=420",
+          "value": "+160%"
+        },
+        {
+          "extracted_value": 160,
+          "link": "https://trends.google.com/trends/explore?q=stanley+coffee+mug&date=today+12-m",
+          "query": "stanley coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=stanley+coffee+mug&tz=420",
+          "value": "+160%"
+        },
+        {
+          "extracted_value": 150,
+          "link": "https://trends.google.com/trends/explore?q=stanley+coffee&date=today+12-m",
+          "query": "stanley coffee",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=stanley+coffee&tz=420",
+          "value": "+150%"
+        },
+        {
+          "extracted_value": 150,
+          "link": "https://trends.google.com/trends/explore?q=stanley+coffee+cup&date=today+12-m",
+          "query": "stanley coffee cup",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=stanley+coffee+cup&tz=420",
+          "value": "+150%"
+        },
+        {
+          "extracted_value": 150,
+          "link": "https://trends.google.com/trends/explore?q=stanley+cup&date=today+12-m",
+          "query": "stanley cup",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=stanley+cup&tz=420",
+          "value": "+150%"
+        },
+        {
+          "extracted_value": 140,
+          "link": "https://trends.google.com/trends/explore?q=stanley+mug&date=today+12-m",
+          "query": "stanley mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=stanley+mug&tz=420",
+          "value": "+140%"
+        },
+        {
+          "extracted_value": 140,
+          "link": "https://trends.google.com/trends/explore?q=taylor+swift+coffee+mug&date=today+12-m",
+          "query": "taylor swift coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=taylor+swift+coffee+mug&tz=420",
+          "value": "+140%"
+        },
+        {
+          "extracted_value": 120,
+          "link": "https://trends.google.com/trends/explore?q=one+piece+coffee+mug&date=today+12-m",
+          "query": "one piece coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=one+piece+coffee+mug&tz=420",
+          "value": "+120%"
+        },
+        {
+          "extracted_value": 120,
+          "link": "https://trends.google.com/trends/explore?q=stanley+tumbler&date=today+12-m",
+          "query": "stanley tumbler",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=stanley+tumbler&tz=420",
+          "value": "+120%"
+        },
+        {
+          "extracted_value": 110,
+          "link": "https://trends.google.com/trends/explore?q=bluey+coffee+mug&date=today+12-m",
+          "query": "bluey coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=bluey+coffee+mug&tz=420",
+          "value": "+110%"
+        },
+        {
+          "extracted_value": 110,
+          "link": "https://trends.google.com/trends/explore?q=stanley+travel+mug&date=today+12-m",
+          "query": "stanley travel mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=stanley+travel+mug&tz=420",
+          "value": "+110%"
+        },
+        {
+          "extracted_value": 110,
+          "link": "https://trends.google.com/trends/explore?q=the+view+coffee+mug&date=today+12-m",
+          "query": "the view coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=the+view+coffee+mug&tz=420",
+          "value": "+110%"
+        },
+        {
+          "extracted_value": 110,
+          "link": "https://trends.google.com/trends/explore?q=stanley+coffee+travel+mug&date=today+12-m",
+          "query": "stanley coffee travel mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=stanley+coffee+travel+mug&tz=420",
+          "value": "+110%"
+        },
+        {
+          "extracted_value": 100,
+          "link": "https://trends.google.com/trends/explore?q=butterfly+coffee+mug&date=today+12-m",
+          "query": "butterfly coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=butterfly+coffee+mug&tz=420",
+          "value": "+100%"
+        },
+        {
+          "extracted_value": 80,
+          "link": "https://trends.google.com/trends/explore?q=self+stirring+coffee+mug&date=today+12-m",
+          "query": "self stirring coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=self+stirring+coffee+mug&tz=420",
+          "value": "+80%"
+        }
+      ],
+      "top": [
+        {
+          "extracted_value": 100,
+          "link": "https://trends.google.com/trends/explore?q=cup&date=today+12-m",
+          "query": "cup",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=cup&tz=420",
+          "value": "100"
+        },
+        {
+          "extracted_value": 98,
+          "link": "https://trends.google.com/trends/explore?q=coffee+mug+travel&date=today+12-m",
+          "query": "coffee mug travel",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=coffee+mug+travel&tz=420",
+          "value": "98"
+        },
+        {
+          "extracted_value": 96,
+          "link": "https://trends.google.com/trends/explore?q=travel+mug&date=today+12-m",
+          "query": "travel mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=travel+mug&tz=420",
+          "value": "96"
+        },
+        {
+          "extracted_value": 96,
+          "link": "https://trends.google.com/trends/explore?q=coffee+cup&date=today+12-m",
+          "query": "coffee cup",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=coffee+cup&tz=420",
+          "value": "96"
+        },
+        {
+          "extracted_value": 75,
+          "link": "https://trends.google.com/trends/explore?q=mugs&date=today+12-m",
+          "query": "mugs",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=mugs&tz=420",
+          "value": "75"
+        },
+        {
+          "extracted_value": 75,
+          "link": "https://trends.google.com/trends/explore?q=coffee+mugs&date=today+12-m",
+          "query": "coffee mugs",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=coffee+mugs&tz=420",
+          "value": "75"
+        },
+        {
+          "extracted_value": 63,
+          "link": "https://trends.google.com/trends/explore?q=mug+of+coffee&date=today+12-m",
+          "query": "mug of coffee",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=mug+of+coffee&tz=420",
+          "value": "63"
+        },
+        {
+          "extracted_value": 52,
+          "link": "https://trends.google.com/trends/explore?q=best+coffee+mug&date=today+12-m",
+          "query": "best coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=best+coffee+mug&tz=420",
+          "value": "52"
+        },
+        {
+          "extracted_value": 51,
+          "link": "https://trends.google.com/trends/explore?q=yeti+mug&date=today+12-m",
+          "query": "yeti mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=yeti+mug&tz=420",
+          "value": "51"
+        },
+        {
+          "extracted_value": 50,
+          "link": "https://trends.google.com/trends/explore?q=yeti&date=today+12-m",
+          "query": "yeti",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=yeti&tz=420",
+          "value": "50"
+        },
+        {
+          "extracted_value": 47,
+          "link": "https://trends.google.com/trends/explore?q=yeti+coffee+mug&date=today+12-m",
+          "query": "yeti coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=yeti+coffee+mug&tz=420",
+          "value": "47"
+        },
+        {
+          "extracted_value": 31,
+          "link": "https://trends.google.com/trends/explore?q=ceramic+coffee+mug&date=today+12-m",
+          "query": "ceramic coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=ceramic+coffee+mug&tz=420",
+          "value": "31"
+        },
+        {
+          "extracted_value": 30,
+          "link": "https://trends.google.com/trends/explore?q=ceramic+mug&date=today+12-m",
+          "query": "ceramic mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=ceramic+mug&tz=420",
+          "value": "30"
+        },
+        {
+          "extracted_value": 29,
+          "link": "https://trends.google.com/trends/explore?q=coffee+mug+set&date=today+12-m",
+          "query": "coffee mug set",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=coffee+mug+set&tz=420",
+          "value": "29"
+        },
+        {
+          "extracted_value": 27,
+          "link": "https://trends.google.com/trends/explore?q=insulated+coffee+mug&date=today+12-m",
+          "query": "insulated coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=insulated+coffee+mug&tz=420",
+          "value": "27"
+        },
+        {
+          "extracted_value": 27,
+          "link": "https://trends.google.com/trends/explore?q=glass+mug&date=today+12-m",
+          "query": "glass mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=glass+mug&tz=420",
+          "value": "27"
+        },
+        {
+          "extracted_value": 27,
+          "link": "https://trends.google.com/trends/explore?q=glass+coffee+mug&date=today+12-m",
+          "query": "glass coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=glass+coffee+mug&tz=420",
+          "value": "27"
+        },
+        {
+          "extracted_value": 26,
+          "link": "https://trends.google.com/trends/explore?q=coffee+cups&date=today+12-m",
+          "query": "coffee cups",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=coffee+cups&tz=420",
+          "value": "26"
+        },
+        {
+          "extracted_value": 26,
+          "link": "https://trends.google.com/trends/explore?q=mug+set&date=today+12-m",
+          "query": "mug set",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=mug+set&tz=420",
+          "value": "26"
+        },
+        {
+          "extracted_value": 25,
+          "link": "https://trends.google.com/trends/explore?q=stanley&date=today+12-m",
+          "query": "stanley",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=stanley&tz=420",
+          "value": "25"
+        },
+        {
+          "extracted_value": 24,
+          "link": "https://trends.google.com/trends/explore?q=stanley+coffee+mug&date=today+12-m",
+          "query": "stanley coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=stanley+coffee+mug&tz=420",
+          "value": "24"
+        },
+        {
+          "extracted_value": 24,
+          "link": "https://trends.google.com/trends/explore?q=stanley+coffee&date=today+12-m",
+          "query": "stanley coffee",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=stanley+coffee&tz=420",
+          "value": "24"
+        },
+        {
+          "extracted_value": 23,
+          "link": "https://trends.google.com/trends/explore?q=stanley+mug&date=today+12-m",
+          "query": "stanley mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=stanley+mug&tz=420",
+          "value": "23"
+        },
+        {
+          "extracted_value": 23,
+          "link": "https://trends.google.com/trends/explore?q=starbucks+coffee+mug&date=today+12-m",
+          "query": "starbucks coffee mug",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=starbucks+coffee+mug&tz=420",
+          "value": "23"
+        },
+        {
+          "extracted_value": 23,
+          "link": "https://trends.google.com/trends/explore?q=coffee+mug+tumbler&date=today+12-m",
+          "query": "coffee mug tumbler",
+          "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&q=coffee+mug+tumbler&tz=420",
+          "value": "23"
+        }
+      ]
+    },
+    "search_metadata": {
+      "created_at": "2024-07-16 09:39:11 UTC",
+      "google_trends_url": "https://trends.google.com/trends/api/explore?tz=420&req=%7B%22comparisonItem%22%3A%5B%7B%22keyword%22%3A%22coffee+mug%22%2C%22geo%22%3A%22%22%2C%22time%22%3A%22today+12-m%22%7D%5D%2C%22category%22%3A0%2C%22property%22%3A%22%22%2C%22userConfig%22%3A%22%7BuserType%3A+%5C%22USER_TYPE_LEGIT_USER%5C%22%7D%22%7D",
+      "id": "66963fbf94fb03db29f129df",
+      "json_endpoint": "https://serpapi.com/searches/86e0366d2a30d075/66963fbf94fb03db29f129df.json",
+      "prettify_html_file": "https://serpapi.com/searches/86e0366d2a30d075/66963fbf94fb03db29f129df.prettify",
+      "processed_at": "2024-07-16 09:39:11 UTC",
+      "raw_html_file": "https://serpapi.com/searches/86e0366d2a30d075/66963fbf94fb03db29f129df.html",
+      "status": "Success",
+      "total_time_taken": 8.64
+    },
+    "search_parameters": {
+      "data_type": "RELATED_QUERIES",
+      "date": "today 12-m",
+      "engine": "google_trends",
+      "q": "coffee mug",
+      "tz": "420"
+    }
+  }
+  
