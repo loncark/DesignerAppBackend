@@ -37,6 +37,7 @@ def fetchTrends(date, country_code, test=global_test):
                 return json.dumps({"message": "API limit of 100 searches per month exceeded."}), 429
             else:
                 print(e)
+                return json.dumps({"Exception": e})
 
 def fetchRelatedQueries(keyword, test=global_test):
     if test:
@@ -67,6 +68,7 @@ def fetchRelatedQueries(keyword, test=global_test):
                 return json.dumps({"message": "API limit of 100 searches per month exceeded."}), 429
             else:
                 print(e)
+                return json.dumps({"Exception": e})
 
 def fetchInterestByRegion(keyword, test=global_test):
     if test:
@@ -97,6 +99,7 @@ def fetchInterestByRegion(keyword, test=global_test):
                 return json.dumps({"message": "API limit of 100 searches per month exceeded."}), 429
             else:
                 print(e)
+                return json.dumps({"Exception": e})
 
 def fetchInterestOverTime(keyword, test=global_test):
     try:
@@ -132,8 +135,8 @@ def fetchInterestOverTime(keyword, test=global_test):
         return jsonify({'data': processed_data})
 
     except Exception as e:
-        print("Error processing trend data: ", e)
-        return jsonify({'error': "Error processing trend data."})
+        print(e)
+        return json.dumps({"Exception": e})
     
 def extractDatesAndValues(data):
     timeline_data = data['interest_over_time']['timeline_data']
