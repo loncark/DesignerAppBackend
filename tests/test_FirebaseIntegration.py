@@ -74,7 +74,7 @@ class TestFirebaseIntegration(unittest.TestCase):
 
 
     @patch('firebase_admin.db.reference')
-    def test_getAllDesignsWhenTheyExist(self, mock_db_reference):       
+    def test_getAllDesigns(self, mock_db_reference):       
         mockDbRef = Mock()
         mock_db_reference.return_value = mockDbRef
         mockDesigns = {
@@ -137,7 +137,7 @@ class TestFirebaseIntegration(unittest.TestCase):
         
 
     @patch('firebase_admin.db.reference')
-    def test_deleteDesignWhenOneExists(self, mock_db_reference):
+    def test_deleteDesign(self, mock_db_reference):
         mockDbRef = Mock()
         mock_db_reference.return_value = mockDbRef
 
