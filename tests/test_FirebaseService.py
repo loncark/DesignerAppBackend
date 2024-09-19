@@ -142,11 +142,10 @@ class TestFirebaseService(unittest.TestCase):
             self.assertEqual(result, 'test-url')
             
             # case 2
-            mockImage.save.side_effect = Exception("Test exception")
+            mockImage.save.side_effect = Exception
             
-            result = storeToStorage('test.png', '12345')
-            
-            self.assertEqual(result, 'Error uploading image: Test exception')
+            with self.assertRaises(Exception):
+                storeToStorage('test.png', '12345')
 
     @patch('firebase_admin.storage.bucket')
     def test_deleteFromStorageByUrl(self, mock_storage_bucket):

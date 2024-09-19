@@ -26,7 +26,7 @@ def saveToStorage():
         downloadUrl = service.FirebaseService.storeToStorage(image, designId)
         return jsonify({'url': downloadUrl}), 200
     except Exception as e:
-        return jsonify({'error': e}), 500
+        return jsonify({'error': str(e)}), 500
 
 
 @firebase_bp.route('/storageDelete', methods=['DELETE'])

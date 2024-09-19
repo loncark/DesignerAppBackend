@@ -181,13 +181,14 @@ class TestFirebaseIntegration(unittest.TestCase):
         self.assertEqual(resultUrl, 'test-url')
             
         # case 2
-        mock_storage_bucket.side_effect = Exception("Test exception")
+        mock_storage_bucket.side_effect = Exception('Test exception')
         data={'design_id': '12345', 'image': (io.BytesIO(imgByteArray.getvalue()), 'test_image.png')}
-
-        result = self.client.post('/storage', data=data, content_type='multipart/form-data')
             
-        resultUrl = json.loads(result.get_data(as_text=True))['url'] 
-        self.assertEqual(resultUrl, 'Error uploading image: Test exception')
+        result = self.client.post('/storage', data=data, content_type='multipart/form-data')
+
+        self.assertEqual(result.status_code, 500)
+        resultMsg = json.loads(result.get_data(as_text=True))['error'] 
+        self.assertEqual(resultMsg, 'Test exception')
     
     
     @patch('service.FirebaseService.storage.bucket')

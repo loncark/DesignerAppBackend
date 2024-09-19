@@ -94,7 +94,7 @@ def storeToStorage(image_file, design_id):
         blob.make_public()
         return blob.public_url
     except Exception as e:
-        return f'Error uploading image: {e}'
+        raise e
     
 def deleteFromStorageByUrl(download_url):
     try:
