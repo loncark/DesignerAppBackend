@@ -9,7 +9,7 @@ import requests
 from io import BytesIO
 from zipfile import ZipFile
 
-class FirebaseService():
+class FirebaseService:
     def __init__(self):
         creds = credentials.Certificate(FIREBASE_CREDS_JSON_LOCATION)
         firebase_admin.initialize_app(creds, {
