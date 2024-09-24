@@ -1,30 +1,35 @@
-import service.GoogleTrendsService
-
+from service.GoogleTrendsService import GoogleTrendsService
 from flask import Blueprint, request
 
-gt_bp = Blueprint('gt_bp', __name__)
+class GoogleTrendsController:
+    def __init__(self):
+        self.service = GoogleTrendsService()
+        self.blueprint = Blueprint('gtBp', __name__)
+        self.registerRoutes()
 
-@gt_bp.route('/trends', methods=['POST'])
-def queryGoogleTrends():
-    data = request.get_json()
-    country_code = data.get('country_code')
-    date = data.get('date')
-    return service.GoogleTrendsService.fetchTrends(date, country_code)
+    def registerRoutes(self):
+        self.blueprint.route('/trends', methods=['POST'])(self.queryGoogleTrends)
+        self.blueprint.route('/relatedQueries', methods=['POST'])(self.queryRelatedQueries)
+        self.blueprint.route('/interestByRegion', methods=['POST'])(self.queryInterestByRegion)
+        self.blueprint.route('/chart', methods=['POST'])(self.queryInterestOverTime)
 
-@gt_bp.route('/relatedQueries', methods=['POST'])
-def queryRelatedQueries():
-    data = request.get_json()
-    keyword = data.get('keyword')
-    return service.GoogleTrendsService.fetchRelatedQueries(keyword)
+    def queryGoogleTrends(self):
+        data = request.get_json()
+        country_code = data.get('country_code')
+        date = data.get('date')
+        return self.service.fetchTrends(date, country_code)
 
-@gt_bp.route('/interestByRegion', methods=['POST'])
-def queryInterestByRegion():
-    data = request.get_json()
-    keyword = data.get('keyword')
-    return service.GoogleTrendsService.fetchInterestByRegion(keyword)
+    def queryRelatedQueries(self):
+        data = request.get_json()
+        keyword = data.get('keyword')
+        return self.service.fetchRelatedQueries(keyword)
 
-@gt_bp.route('/chart', methods=['POST'])
-def queryInterestOverTime():
-    data = request.get_json()
-    keyword = data.get('keyword')
-    return service.GoogleTrendsService.fetchInterestOverTime(keyword)
+    def queryInterestByRegion(self):
+        data = request.get_json()
+        keyword = data.get('keyword')
+        return self.service.fetchInterestByRegion(keyword)
+
+    def queryInterestOverTime(self):
+        data = request.get_json()
+        keyword = data.get('keyword')
+        return self.service.fetchInterestOverTime(keyword)

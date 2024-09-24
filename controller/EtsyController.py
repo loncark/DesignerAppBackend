@@ -1,9 +1,12 @@
-import service.EtsyService
+from service.EtsyService import EtsyService
 from flask import Blueprint, request
 
-etsy_bp = Blueprint('etsy_bp', __name__)
+class EtsyController:
+    def __init__(self):
+        self.service = EtsyService()
+        self.blueprint = Blueprint('etsyBp', __name__)
+        self.blueprint.route('/etsy', methods=['POST'])(self.queryEtsy)
 
-@etsy_bp.route('/etsy', methods=['POST'])
-def queryEtsy():
-    data = request.get_json()
-    return service.EtsyService.fetchProducts(**data)
+    def queryEtsy(self):
+        data = request.get_json()
+        return self.service.fetchProducts(**data)

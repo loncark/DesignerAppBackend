@@ -1,11 +1,13 @@
-import service.TrademarkService
-
+from service.TrademarkService import TrademarkService
 from flask import Blueprint, request
 
-trademark_bp = Blueprint('trademark_bp', __name__)
+class TrademarkController:
+    def __init__(self):
+        self.service = TrademarkService()
+        self.blueprint = Blueprint('trademarkBp', __name__)
+        self.blueprint.route('/tess', methods=['POST'])(self.queryTESS)
 
-@trademark_bp.route('/tess', methods=['POST'])
-def queryTESS():
-    data = request.get_json()
-    prompt = data.get('prompt')
-    return service.TrademarkService.fetchAndFilterResponse(prompt)
+    def queryTESS(self):
+        data = request.get_json()
+        prompt = data.get('prompt')
+        return self.service.fetchAndFilterResponse(prompt)

@@ -1,27 +1,30 @@
 from flask import Flask
 from flask_cors import CORS
-from controller.GeminiController import gemini_bp
-from controller.TrademarkController import trademark_bp
-from controller.StableDiffusionController import sd_bp
-from controller.GoogleTrendsController import gt_bp
 from controller.FirebaseController import FirebaseController
-from controller.EtsyController import etsy_bp
+from controller.GeminiController import GeminiController
+from controller.TrademarkController import TrademarkController
+from controller.StableDiffusionController import StableDiffusionController
+from controller.GoogleTrendsController import GoogleTrendsController
+from controller.EtsyController import EtsyController
 
-def create_app():
+def createApp():
     app = Flask(__name__)
     CORS(app)
 
-    app.register_blueprint(gemini_bp)
-    app.register_blueprint(trademark_bp)
-    app.register_blueprint(sd_bp)
-    app.register_blueprint(gt_bp)
-    app.register_blueprint(etsy_bp)
+    controllers = [
+        FirebaseController(),
+        GeminiController(),
+        TrademarkController(),
+        StableDiffusionController(),
+        GoogleTrendsController(),
+        EtsyController(),
+    ]
 
-    firebaseController = FirebaseController()
-    app.register_blueprint(firebaseController.firebaseBp)
+    for controller in controllers:
+        app.register_blueprint(controller.blueprint)
 
     return app
 
 if __name__ == '__main__':
-    app = create_app()
+    app = createApp()
     app.run(debug=True)

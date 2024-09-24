@@ -3,11 +3,13 @@
 import google.generativeai as genai
 from config import GEMINI_API_KEY
 
-genai.configure(api_key=GEMINI_API_KEY) 
-model = genai.GenerativeModel('gemini-pro')
+class GeminiService:
+    def __init__(self):
+        genai.configure(api_key=GEMINI_API_KEY) 
+        self.model = genai.GenerativeModel('gemini-pro')
 
-def fetchResponse(prompt):
-    
-    response = model.generate_content(prompt)
+    def fetchResponse(self, prompt):
+        
+        response = self.model.generate_content(prompt)
 
-    return response.text
+        return response.text
