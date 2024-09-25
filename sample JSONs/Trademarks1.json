@@ -1,0 +1,125 @@
+{
+  "count": 4,
+  "items": [
+    {
+      "abandonment_date": null,
+      "description": "Hair accessories, namely, hair ties, hair bands, ponytail holders",
+      "expiration_date": "2026-10-27",
+      "filing_date": "2020-04-17",
+      "keyword": "JUST DO IT",
+      "owners": [
+        {
+          "address1": "1 Bowerman Dr.",
+          "address2": null,
+          "city": "Beaverton",
+          "country": "US",
+          "index": 1,
+          "legal_entity_type": "03",
+          "legal_entity_type_label": "Corporation",
+          "name": "Nike, Inc.",
+          "owner_label": "Original Registrant",
+          "owner_type": "30",
+          "postcode": "97005",
+          "state": "OR"
+        }
+      ],
+      "registration_date": "2020-10-27",
+      "registration_number": "6185209",
+      "serial_number": "88876918",
+      "status_code": "700",
+      "status_date": "2020-10-27",
+      "status_definition": "REGISTERED",
+      "status_label": "Live/Registered"
+    },
+    {
+      "abandonment_date": null,
+      "description": "Retail store services and on-line retail store services featuring apparel, apparel accessories, footwear, footwear accessories, headwear, eyewear and accessories, sporting goods and equipment, bags, sports bags, sports and fitness products and accessories",
+      "expiration_date": "2025-04-16",
+      "filing_date": "2018-10-26",
+      "keyword": "JUST DO IT",
+      "owners": [
+        {
+          "address1": "One Bowerman Drive",
+          "address2": null,
+          "city": "Beaverton",
+          "country": "US",
+          "index": 1,
+          "legal_entity_type": "03",
+          "legal_entity_type_label": "Corporation",
+          "name": "Nike, Inc.",
+          "owner_label": "Original Registrant",
+          "owner_type": "30",
+          "postcode": "97005",
+          "state": "OR"
+        }
+      ],
+      "registration_date": "2019-04-16",
+      "registration_number": "5727940",
+      "serial_number": "88170627",
+      "status_code": "700",
+      "status_date": "2019-04-16",
+      "status_definition": "REGISTERED",
+      "status_label": "Live/Registered"
+    },
+    {
+      "abandonment_date": null,
+      "description": "Bottles, sold empty",
+      "expiration_date": "2022-02-16",
+      "filing_date": "2015-09-21",
+      "keyword": "JUST DO IT",
+      "owners": [
+        {
+          "address1": null,
+          "address2": "One Bowerman Drive",
+          "city": "Beaverton",
+          "country": "US",
+          "index": 1,
+          "legal_entity_type": "03",
+          "legal_entity_type_label": "Corporation",
+          "name": "Nike, Inc.",
+          "owner_label": "Original Registrant",
+          "owner_type": "30",
+          "postcode": "97005",
+          "state": "OR"
+        }
+      ],
+      "registration_date": "2016-02-16",
+      "registration_number": "4902036",
+      "serial_number": "86762618",
+      "status_code": "700",
+      "status_date": "2016-02-16",
+      "status_definition": "REGISTERED",
+      "status_label": "Live/Registered"
+    },
+    {
+      "abandonment_date": null,
+      "description": "Software as a service (SAAS) services, namely, hosting software for use by others to manage their business, through real-time, web-based collaboration between all parties involved, which allows users to collect, process, store, upload, review, create, update, delete, and share information",
+      "expiration_date": "2025-09-01",
+      "filing_date": "2015-01-16",
+      "keyword": "JUST DO IT ONCE",
+      "owners": [
+        {
+          "address1": "1210 W. 190th Street",
+          "address2": null,
+          "city": "Torrance",
+          "country": "US",
+          "index": 1,
+          "legal_entity_type": "03",
+          "legal_entity_type_label": "Corporation",
+          "name": "JDIO, Inc.",
+          "owner_label": "Original Registrant",
+          "owner_type": "30",
+          "postcode": "90502",
+          "state": "CA"
+        }
+      ],
+      "registration_date": "2015-09-01",
+      "registration_number": "4803350",
+      "serial_number": "86505997",
+      "status_code": "710",
+      "status_date": "2022-03-11",
+      "status_definition": "CANCELLED - SECTION 8",
+      "status_label": "Dead/Cancelled"
+    }
+  ]
+}

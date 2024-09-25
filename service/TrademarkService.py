@@ -1,8 +1,12 @@
 from repository.RealTrademarkRepository import RealTrademarkRepository
+from repository.DummyTrademarkRepository import DummyTrademarkRepository
 
 class TrademarkService:
-  def __init__(self) :
-    self.repository = RealTrademarkRepository()
+  def __init__(self, global_test=True):
+    if global_test:
+      self.repository = DummyTrademarkRepository()
+    else:
+      self.repository = RealTrademarkRepository()
 
   def fetchAndFilterResponse(self, prompt):
       return self.filterJson(self.repository.fetchData(prompt))      
