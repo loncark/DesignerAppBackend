@@ -3,7 +3,6 @@ import json
 from io import BytesIO
 from zipfile import ZipFile
 
-
 class DummyFirebaseRepository(Repository):
     def fetchData(self, success=True, exception=False):
         if exception:
