@@ -57,4 +57,4 @@ class FirebaseController:
                 download_name=f"{design['design_name']}_{design['design_id'] or 'noID'}.zip"
             )
         except Exception as e:
-            return jsonify({'error': 'Error downloading file.'}), 500
+            return jsonify({'error': str(e)}), 500

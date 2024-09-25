@@ -1,5 +1,5 @@
 from interface.Repository import Repository
-import firebase_admin, requests, os, uuid, json
+import firebase_admin, requests, os, uuid
 from firebase_admin import credentials, db, storage
 from config import REALTIMEDB_URL, FIREBASE_CREDS_JSON_LOCATION
 from config import FIREBASE_CREDS_JSON_LOCATION, STORAGE_BUCKET_LOCATION
