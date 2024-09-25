@@ -1,0 +1,57 @@
+{
+    "count": 4,
+    "items": [
+      {
+        "description": "Hair accessories, namely, hair ties, hair bands, ponytail holders",
+        "keyword": "JUST DO IT",
+        "owners": [
+          {
+            "address1": "1 Bowerman Dr.",
+            "city": "Beaverton",
+            "country": "US",
+            "name": "Nike, Inc."
+          }
+        ],
+        "status_label": "Live/Registered"
+      },
+      {
+        "description": "Retail store services and on-line retail store services featuring apparel, apparel accessories, footwear, footwear accessories, headwear, eyewear and accessories, sporting goods and equipment, bags, sports bags, sports and fitness products and accessories",
+        "keyword": "JUST DO IT",
+        "owners": [
+          {
+            "address1": "One Bowerman Drive",
+            "city": "Beaverton",
+            "country": "US",
+            "name": "Nike, Inc."
+          }
+        ],
+        "status_label": "Live/Registered"
+      },
+      {
+        "description": "Bottles, sold empty",
+        "keyword": "JUST DO IT",
+        "owners": [
+          {
+            "address1": null,
+            "city": "Beaverton",
+            "country": "US",
+            "name": "Nike, Inc."
+          }
+        ],
+        "status_label": "Live/Registered"
+      },
+      {
+        "description": "Software as a service (SAAS) services, namely, hosting software for use by others to manage their business, through real-time, web-based collaboration between all parties involved, which allows users to collect, process, store, upload, review, create, update, delete, and share information",
+        "keyword": "JUST DO IT ONCE",
+        "owners": [
+          {
+            "address1": "1210 W. 190th Street",
+            "city": "Torrance",
+            "country": "US",
+            "name": "JDIO, Inc."
+          }
+        ],
+        "status_label": "Dead/Cancelled"
+      }
+    ]
+  }

@@ -3,7 +3,7 @@ import json
 
 class DummyTrademarkRepository(Repository):
     def fetchData(self, prompt):
-        if prompt == '':
+        if prompt != '':
             filePath = r"C:\Users\Kristina\Documents\Diplomski rad\DesignerAppBackend\sample JSONs\Trademarks1.json"
         else:
             filePath = r"C:\Users\Kristina\Documents\Diplomski rad\DesignerAppBackend\sample JSONs\Trademarks2.json"

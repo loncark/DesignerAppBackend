@@ -9,7 +9,10 @@ class TrademarkService:
       self.repository = RealTrademarkRepository()
 
   def fetchAndFilterResponse(self, prompt):
-      return self.filterJson(self.repository.fetchData(prompt))      
+    return self.filterJson(self.fetchTrademarks(prompt))
+
+  def fetchTrademarks(self, prompt):
+    return self.repository.fetchData(prompt)    
 
   def filterJson(self, data):
     transformedData = {}
