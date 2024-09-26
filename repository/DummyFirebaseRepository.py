@@ -1,5 +1,4 @@
 from interface.Repository import Repository
-import json
 from io import BytesIO
 from zipfile import ZipFile
 
@@ -8,11 +7,14 @@ class DummyFirebaseRepository(Repository):
         if exception:
             return f'Error retrieving designs: Test exception'
         elif success:
-            filePath = r"C:\Users\Kristina\Documents\Diplomski rad\DesignerAppBackend\sample JSONs\DesignsInDatabase.json"
-                
-            with open(filePath, 'r') as file:
-                data = json.load(file)
-                
+            data = {
+                '12345': {
+                    'design_name':'Some name'
+                },
+                '67890':{
+                    'description':'Some description'
+                }
+            }                
             return data
         else:
             return []
