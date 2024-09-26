@@ -44,7 +44,7 @@ class TestFirebaseRepository(unittest.TestCase):
 
 
     @patch('firebase_admin.db.reference')
-    def test_getAllDesigns(self, mock_db_reference):
+    def test_fetchData(self, mock_db_reference):
         mockDbRef = Mock()
         mock_db_reference.return_value = mockDbRef
         mockDesigns = {
@@ -58,26 +58,7 @@ class TestFirebaseRepository(unittest.TestCase):
         
         # case 1
         mockDbRef.get.return_value = mockDesigns
-        expectedResult = [
-            {
-                'description': '',
-                'design_id': '12345',
-                'design_name': 'Some name',
-                'image_links': [],
-                'related_links': [],
-                'tags': [],
-                'title': ''
-            },
-            {
-                'description':'Some description',
-                'design_id': '67890',
-                'design_name': '',
-                'image_links': [],
-                'related_links': [],
-                'tags': [],
-                'title': ''
-            }
-        ]
+        expectedResult = mockDesigns
 
         result = self.repository.fetchData()
         
