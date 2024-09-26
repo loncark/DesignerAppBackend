@@ -1,9 +1,9 @@
-from service.StableDiffusionService import StableDiffusionService
+from interface.Service import Service
 from flask import Blueprint, request
 
 class StableDiffusionController:
-    def __init__(self):
-        self.service = StableDiffusionService()
+    def __init__(self, service: Service):
+        self.service = service
         self.blueprint = Blueprint('sdBp', __name__)
         self.registerRoutes()
 

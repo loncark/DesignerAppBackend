@@ -1,9 +1,9 @@
-from service.TrademarkService import TrademarkService
+from interface.Service import Service
 from flask import Blueprint, request
 
 class TrademarkController:
-    def __init__(self):
-        self.service = TrademarkService()
+    def __init__(self, service: Service):
+        self.service = service
         self.blueprint = Blueprint('trademarkBp', __name__)
         self.blueprint.route('/tess', methods=['POST'])(self.queryTESS)
 

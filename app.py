@@ -2,11 +2,9 @@ from flask import Flask
 from flask_cors import CORS
 import os
 import importlib
-from config import ProductionConfig, DevelopmentConfig, TestingConfig   
-from repository.DummyFirebaseRepository import DummyFirebaseRepository
-from repository.RealFirebaseRepository import RealFirebaseRepository    
+from config import ProductionConfig, DevelopmentConfig, TestingConfig    
 
-def createApp(configName):
+def createApp(configName=None):
     app = Flask(__name__)
     CORS(app)
 
@@ -32,14 +30,28 @@ def loadControllers(config):
     controllers = []
     for fileName in fileNames:
         if fileName.endswith('.py') and not fileName.startswith('__'):
-            controllerClassName = fileName[:-3]
-            module = importlib.import_module('controller.' + controllerClassName)
+            apiName = fileName[:-13]
 
-            controllerClass = getattr(module, controllerClassName)
-            controllers.append(controllerClass())
+            controllerClassName = apiName + 'Controller'
+            controllerModule = importlib.import_module('controller.' + controllerClassName)
+
+            serviceClassName = apiName + 'Service'
+            serviceModule = importlib.import_module('service.' + serviceClassName)
+
+            if config['USE_DUMMY_' + apiName.upper() + '_REPO']:
+                repositoryClassName = 'Dummy' + apiName + 'Repository'
+            else:
+                repositoryClassName = 'Real' + apiName + 'Repository'
+                
+            repositoryModule = importlib.import_module('repository.' + repositoryClassName)
+            
+            controllerClass = getattr(controllerModule, controllerClassName)
+            serviceClass = getattr(serviceModule, serviceClassName)
+            repositoryClass = getattr(repositoryModule, repositoryClassName)
+
+            controllers.append(controllerClass(serviceClass(repositoryClass())))
 
     return controllers
-
 
 if __name__ == '__main__':
     app = createApp()

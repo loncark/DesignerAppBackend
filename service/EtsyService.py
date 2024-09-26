@@ -1,12 +1,8 @@
-from repository.DummyEtsyRepository import DummyEtsyRepository
-from repository.RealEtsyRepository import RealEtsyRepository
+from interface.Repository import Repository
 
 class EtsyService:
-    def __init__(self, global_test=True):
-        if global_test:
-            self.repository = DummyEtsyRepository()
-        else:
-            self.repository = RealEtsyRepository()
+    def __init__(self, repository: Repository):
+        self.repository = repository
 
     def fetchProducts(self, keyword, page):
         return self.repository.fetchData(keyword, page)

@@ -1,9 +1,9 @@
-from service.FirebaseService import FirebaseService
+from interface.Service import Service
 from flask import Blueprint, request, jsonify, send_file
 
 class FirebaseController:
-    def __init__(self):
-        self.service = FirebaseService()
+    def __init__(self, service: Service):
+        self.service = service
         self.blueprint = Blueprint('firebaseBp', __name__)
         self.registerRoutes()
 

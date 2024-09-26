@@ -1,12 +1,8 @@
-from repository.RealFirebaseRepository import RealFirebaseRepository
-from repository.DummyFirebaseRepository import DummyFirebaseRepository
+from interface.Repository import Repository
 
 class FirebaseService:
-    def __init__(self, global_test=True):
-        if global_test:
-            self.repository = DummyFirebaseRepository()
-        else: 
-            self.repository= RealFirebaseRepository()
+    def __init__(self, repository: Repository):
+        self.repository = repository
 
     # REALTIME DATABASE
 
