@@ -1,5 +1,5 @@
 from interface.Repository import Repository
-from config import RAPIDAPI_ETSY_URL, RAPIDAPI_API_KEY
+from constants import RAPIDAPI_ETSY_URL, RAPIDAPI_API_KEY
 import requests, json
 
 class RealEtsyRepository(Repository):

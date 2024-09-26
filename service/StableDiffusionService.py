@@ -1,4 +1,4 @@
-from config import SD_TXT2IMG_URL, SD_IMG2IMG_URL
+from constants import SD_TXT2IMG_URL, SD_IMG2IMG_URL
 from repository.RealSDRepository import RealSDRepository
 from repository.DummySDRepository import DummySDRepository
 

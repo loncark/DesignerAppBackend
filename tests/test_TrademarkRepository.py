@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch, Mock
-from config import RAPIDAPI_API_KEY
+from constants import RAPIDAPI_API_KEY
 from repository.RealTrademarkRepository import RealTrademarkRepository
 
 class TestTrademarkRepository(unittest.TestCase):

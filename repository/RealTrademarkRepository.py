@@ -2,7 +2,7 @@ from interface.Repository import Repository
 import requests
 import json
 from urllib.parse import quote
-from config import RAPIDAPI_API_KEY, TESS_BASE_URL
+from constants import RAPIDAPI_API_KEY, TESS_BASE_URL
 
 class RealTrademarkRepository(Repository):
     def fetchData(self, prompt):

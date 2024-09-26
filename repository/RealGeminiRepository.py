@@ -1,6 +1,6 @@
 from interface.Repository import Repository
 import google.generativeai as genai
-from config import GEMINI_API_KEY
+from constants import GEMINI_API_KEY
 
 class RealGeminiRepository(Repository):
     def __init__(self):

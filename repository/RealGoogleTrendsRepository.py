@@ -2,7 +2,7 @@ from interface.Repository import Repository
 import serpapi, json
 from datetime import datetime, timedelta
 from flask import jsonify
-from config import SERPAPI_API_KEY
+from constants import SERPAPI_API_KEY
 
 class RealGoogleTrendsRepository(Repository):
     def fetchData(self, date, country_code):
