@@ -1,7 +1,7 @@
 from interface.Repository import Repository
 import aiohttp, json
 
-class RealSDRepository(Repository):
+class RealStableDiffusionRepository(Repository):
     async def fetchData(self, url, payload):
         async with aiohttp.ClientSession() as session:
           try:

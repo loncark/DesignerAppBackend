@@ -1,20 +1,30 @@
 from flask import Flask
 from flask_cors import CORS
 import os
-import importlib       
+import importlib
+from config import ProductionConfig, DevelopmentConfig, TestingConfig   
+from repository.DummyFirebaseRepository import DummyFirebaseRepository
+from repository.RealFirebaseRepository import RealFirebaseRepository    
 
-def createApp():
+def createApp(configName):
     app = Flask(__name__)
     CORS(app)
 
-    controllers = loadControllers()
+    if configName == 'prod':
+        app.config.from_object(ProductionConfig)
+    elif configName == 'test':
+        app.config.from_object(TestingConfig)
+    else:
+        app.config.from_object(DevelopmentConfig)
+
+    controllers = loadControllers(app.config)
 
     for controller in controllers:
         app.register_blueprint(controller.blueprint)
 
     return app
 
-def loadControllers():
+def loadControllers(config):
     rootDirPath = os.path.dirname(os.path.abspath(__file__))
     controllerDirPath = os.path.join(rootDirPath, 'controller')
     fileNames = os.listdir(controllerDirPath)
@@ -29,6 +39,7 @@ def loadControllers():
             controllers.append(controllerClass())
 
     return controllers
+
 
 if __name__ == '__main__':
     app = createApp()
