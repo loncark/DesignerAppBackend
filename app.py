@@ -38,11 +38,7 @@ def loadControllers(config):
             serviceClassName = apiName + 'Service'
             serviceModule = importlib.import_module('service.' + serviceClassName)
 
-            if config['USE_DUMMY_' + apiName.upper() + '_REPO']:
-                repositoryClassName = 'Dummy' + apiName + 'Repository'
-            else:
-                repositoryClassName = 'Real' + apiName + 'Repository'
-                
+            repositoryClassName = 'Dummy' + apiName + 'Repository' if config['USE_DUMMY_' + apiName.upper() + '_REPO'] else 'Real' + apiName + 'Repository'               
             repositoryModule = importlib.import_module('repository.' + repositoryClassName)
             
             controllerClass = getattr(controllerModule, controllerClassName)
