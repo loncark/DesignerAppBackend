@@ -1,7 +1,6 @@
 import unittest, json
-from flask import Flask
-from unittest.mock import patch, Mock, mock_open
-from controller.FirebaseController import firebase_bp
+from app import createApp
+from unittest.mock import patch, Mock
 import io
 from PIL import Image
 
@@ -9,8 +8,7 @@ class TestFirebaseIntegration(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
-        app = Flask(__name__)
-        app.register_blueprint(firebase_bp)
+        app = createApp('prod')
         self.client = app.test_client()
 
     @patch('firebase_admin.db.reference')
@@ -118,6 +116,7 @@ class TestFirebaseIntegration(unittest.TestCase):
         # case 2
         mock_db_reference.reset_mock()
         mockDbRef.get.return_value = None
+        mock_db_reference.return_value = mockDbRef
         expectedResult = []
 
         result = self.client.get('/db/allDesigns')
@@ -133,7 +132,7 @@ class TestFirebaseIntegration(unittest.TestCase):
         result = self.client.get('/db/allDesigns')
 
         mock_db_reference.assert_called_once_with('/Designs')
-        self.assertEqual(result.get_data(as_text=True), 'Error retrieving designs: Test exception')
+        self.assertEqual(json.loads(result.get_data(as_text=True))['error'], 'Test exception')
         
 
     @patch('firebase_admin.db.reference')
@@ -153,7 +152,7 @@ class TestFirebaseIntegration(unittest.TestCase):
         self.assertEqual(result.get_data(as_text=True), 'Error deleting design data: Test exception')
 
 
-    @patch('service.FirebaseService.storage.bucket')
+    @patch('repository.RealFirebaseRepository.storage.bucket')
     @patch('uuid.uuid4')
     def test_storeToStorage(self, mock_uuid, mock_storage_bucket):
         mockBucket = Mock()
@@ -191,7 +190,7 @@ class TestFirebaseIntegration(unittest.TestCase):
         self.assertEqual(resultMsg, 'Test exception')
     
     
-    @patch('service.FirebaseService.storage.bucket')
+    @patch('repository.RealFirebaseRepository.storage.bucket')
     def test_deleteFromStorage(self, mock_storage_bucket):
         mockBucket = Mock()
         mock_storage_bucket.return_value = mockBucket

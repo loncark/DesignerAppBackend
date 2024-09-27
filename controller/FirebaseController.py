@@ -25,7 +25,8 @@ class FirebaseController:
         return self.service.deleteDesign(**data)
 
     def getAllDesigns(self):
-        return self.service.getAllDesigns()
+        response = self.service.getAllDesigns()
+        return jsonify({'error': response}) if isinstance(response, str) else response
 
     def saveToStorage(self):
         image = request.files['image']

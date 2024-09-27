@@ -9,11 +9,12 @@ from zipfile import ZipFile
 
 class RealFirebaseRepository(Repository):
     def __init__(self):
-        creds = credentials.Certificate(FIREBASE_CREDS_JSON_LOCATION)
-        firebase_admin.initialize_app(creds, {
-            'databaseURL': REALTIMEDB_URL,
-            'storageBucket': STORAGE_BUCKET_LOCATION
-        })
+        if not firebase_admin._apps:
+            creds = credentials.Certificate(FIREBASE_CREDS_JSON_LOCATION)
+            firebase_admin.initialize_app(creds, {
+                'databaseURL': REALTIMEDB_URL,
+                'storageBucket': STORAGE_BUCKET_LOCATION
+            })            
 
     # REALTIME DATABASE
 
@@ -27,7 +28,7 @@ class RealFirebaseRepository(Repository):
             else:
                 return []
         except Exception as e:
-            return f'Error retrieving designs: {e}'
+            return str(e)
         
     def storeDesignToDb(self, design_name, title, tags, related_links, image_links, description, design_id):
         dbRef = db.reference('/Designs')
