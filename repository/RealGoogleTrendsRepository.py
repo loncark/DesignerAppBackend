@@ -5,7 +5,7 @@ from flask import jsonify
 from constants import SERPAPI_API_KEY
 
 class RealGoogleTrendsRepository(Repository):
-    def fetchData(self, date, country_code):
+    def fetchTrends(self, date, country_code):
         params = {
                 "engine": "google_trends_trending_now",
                 "frequency": "daily",

@@ -2,5 +2,5 @@ from abc import ABC, abstractmethod
 
 class Repository(ABC):
     @abstractmethod
-    def fetchData(self):
+    def __init__(self):
         pass

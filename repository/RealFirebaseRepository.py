@@ -17,7 +17,7 @@ class RealFirebaseRepository(Repository):
 
     # REALTIME DATABASE
 
-    def fetchData(self):
+    def getDesigns(self):
         dbRef = db.reference('/Designs')
 
         try:

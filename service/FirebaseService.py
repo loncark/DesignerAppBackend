@@ -7,7 +7,7 @@ class FirebaseService:
     # REALTIME DATABASE
 
     def getAllDesigns(self):
-        return self.designsWithIds(self.repository.fetchData())
+        return self.designsWithIds(self.repository.getDesigns())
         
     def designsWithIds(self, designs):
         newDesigns = []

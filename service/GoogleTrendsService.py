@@ -9,7 +9,7 @@ class GoogleTrendsService:
         self.repository = repository
 
     def fetchTrends(self, date, country_code):
-        return self.repository.fetchData(date, country_code)
+        return self.repository.fetchTrends(date, country_code)
             
     def fetchRelatedQueries(self, keyword):
         return self.repository.fetchRelatedQueries(keyword)

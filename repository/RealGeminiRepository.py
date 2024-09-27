@@ -7,7 +7,7 @@ class RealGeminiRepository(Repository):
         genai.configure(api_key=GEMINI_API_KEY) 
         self.model = genai.GenerativeModel('gemini-pro')
 
-    def fetchData(self, prompt):
+    def fetchResponse(self, prompt):
         response = self.model.generate_content(prompt)
 
         return response.text

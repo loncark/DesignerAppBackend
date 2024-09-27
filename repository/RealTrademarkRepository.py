@@ -5,7 +5,7 @@ from urllib.parse import quote
 from constants import RAPIDAPI_API_KEY, TESS_BASE_URL
 
 class RealTrademarkRepository(Repository):
-    def fetchData(self, prompt):
+    def fetchTrademarks(self, prompt):
         headers = {
             "X-RapidAPI-Key": RAPIDAPI_API_KEY,
             "X-RapidAPI-Host": "uspto-trademark.p.rapidapi.com"

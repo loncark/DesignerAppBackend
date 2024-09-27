@@ -3,7 +3,7 @@ from constants import RAPIDAPI_ETSY_URL, RAPIDAPI_API_KEY
 import requests, json
 
 class RealEtsyRepository(Repository):
-    def fetchData(self, keyword, page):
+    def fetchProducts(self, keyword, page):
         queryString = {"query": keyword, "page" : page}
 
         headers = {

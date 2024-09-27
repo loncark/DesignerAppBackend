@@ -5,4 +5,4 @@ class EtsyService:
         self.repository = repository
 
     def fetchProducts(self, keyword, page):
-        return self.repository.fetchData(keyword, page)
+        return self.repository.fetchProducts(keyword, page)

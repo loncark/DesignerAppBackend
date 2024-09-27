@@ -8,7 +8,7 @@ class TrademarkService:
     return self.filterJson(self.fetchTrademarks(prompt))
 
   def fetchTrademarks(self, prompt):
-    return self.repository.fetchData(prompt)    
+    return self.repository.fetchTrademarks(prompt)    
 
   def filterJson(self, data):
     transformedData = {}

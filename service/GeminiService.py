@@ -7,4 +7,4 @@ class GeminiService:
         self.repository = repository
 
     def fetchResponse(self, prompt):
-        return self.repository.fetchData(prompt)
+        return self.repository.fetchResponse(prompt)

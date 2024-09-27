@@ -44,7 +44,7 @@ class TestFirebaseRepository(unittest.TestCase):
 
 
     @patch('firebase_admin.db.reference')
-    def test_fetchData(self, mock_db_reference):
+    def test_getDesigns(self, mock_db_reference):
         mockDbRef = Mock()
         mock_db_reference.return_value = mockDbRef
         mockDesigns = {
@@ -60,7 +60,7 @@ class TestFirebaseRepository(unittest.TestCase):
         mockDbRef.get.return_value = mockDesigns
         expectedResult = mockDesigns
 
-        result = self.repository.fetchData()
+        result = self.repository.getDesigns()
         
         mockDbRef.get.assert_called_once()
         mock_db_reference.assert_called_once()
@@ -71,7 +71,7 @@ class TestFirebaseRepository(unittest.TestCase):
         mockDbRef.get.return_value = None
         expectedResult = []
 
-        result = self.repository.fetchData()
+        result = self.repository.getDesigns()
 
         mockDbRef.get.assert_called_once()
         mock_db_reference.assert_called_once()
@@ -79,7 +79,7 @@ class TestFirebaseRepository(unittest.TestCase):
 
         # case 3
         mockDbRef.get.side_effect = Exception("Test exception")
-        result = self.repository.fetchData()
+        result = self.repository.getDesigns()
         self.assertEqual(result, "Error retrieving designs: Test exception")
 
 

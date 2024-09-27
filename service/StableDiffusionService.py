@@ -6,7 +6,7 @@ class StableDiffusionService:
     self.repository = repository
 
   async def txt2img(self, payload):
-    return await self.repository.fetchData(SD_TXT2IMG_URL, payload)
+    return await self.repository.generateImage(SD_TXT2IMG_URL, payload)
 
   async def img2img(self, payload):
-    return await self.repository.fetchData(SD_IMG2IMG_URL, payload)
+    return await self.repository.generateImage(SD_IMG2IMG_URL, payload)

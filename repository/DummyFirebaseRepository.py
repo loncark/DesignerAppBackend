@@ -3,7 +3,7 @@ from io import BytesIO
 from zipfile import ZipFile
 
 class DummyFirebaseRepository(Repository):
-    def fetchData(self, success=True, exception=False):
+    def getDesigns(self, success=True, exception=False):
         if exception:
             return f'Error retrieving designs: Test exception'
         elif success:

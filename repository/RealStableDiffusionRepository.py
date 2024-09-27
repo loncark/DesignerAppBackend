@@ -2,7 +2,7 @@ from interface.Repository import Repository
 import aiohttp, json
 
 class RealStableDiffusionRepository(Repository):
-    async def fetchData(self, url, payload):
+    async def generateImage(self, url, payload):
         async with aiohttp.ClientSession() as session:
           try:
               async with session.post(url, json=payload, timeout=aiohttp.ClientTimeout(total=3000)) as response:    # 50 minutes timeout
