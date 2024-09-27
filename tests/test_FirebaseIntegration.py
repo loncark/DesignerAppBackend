@@ -132,7 +132,7 @@ class TestFirebaseIntegration(unittest.TestCase):
         result = self.client.get('/db/allDesigns')
 
         mock_db_reference.assert_called_once_with('/Designs')
-        self.assertEqual(json.loads(result.get_data(as_text=True))['error'], 'Test exception')
+        self.assertEqual(json.loads(result.get_data(as_text=True))['error'], 'Error retrieving design data: Test exception')
         
 
     @patch('firebase_admin.db.reference')

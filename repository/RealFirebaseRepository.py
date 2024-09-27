@@ -28,7 +28,7 @@ class RealFirebaseRepository(Repository):
             else:
                 return []
         except Exception as e:
-            return str(e)
+            return f'Error retrieving design data: {e}'
         
     def storeDesignToDb(self, design_name, title, tags, related_links, image_links, description, design_id):
         dbRef = db.reference('/Designs')

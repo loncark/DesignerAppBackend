@@ -81,7 +81,7 @@ class TestFirebaseRepository(unittest.TestCase):
         # case 3
         mockDbRef.get.side_effect = Exception("Test exception")
         result = self.repository.getDesigns()
-        self.assertEqual(result, "Test exception")
+        self.assertEqual(result, "Error retrieving design data: Test exception")
 
 
     @patch('firebase_admin.db.reference')
