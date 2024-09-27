@@ -1,9 +1,10 @@
 import unittest, json
 from service.TrademarkService import TrademarkService
+from repository.DummyTrademarkRepository import DummyTrademarkRepository
 
 class TestTrademarkService(unittest.TestCase):
     def setUp(self):
-        self.service = TrademarkService(global_test=True)
+        self.service = TrademarkService(DummyTrademarkRepository())
 
     def test_filterJson(self):
         inputData = self.service.fetchTrademarks("Some Prompt")

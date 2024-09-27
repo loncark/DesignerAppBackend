@@ -3,7 +3,8 @@ from unittest.mock import patch, Mock
 from repository.RealFirebaseRepository import RealFirebaseRepository
 
 class TestFirebaseRepository(unittest.TestCase):
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.repository = RealFirebaseRepository()
 
     @patch('firebase_admin.db.reference')

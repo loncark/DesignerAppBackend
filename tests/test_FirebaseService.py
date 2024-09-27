@@ -1,9 +1,10 @@
 import unittest
 from service.FirebaseService import FirebaseService
+from repository.DummyFirebaseRepository import DummyFirebaseRepository
 
 class TestFirebaseService(unittest.TestCase):
     def setUp(self):
-        self.service = FirebaseService(global_test=True)
+        self.service = FirebaseService(DummyFirebaseRepository())
 
     def test_designsWithIds(self):
         mockDesigns = {
