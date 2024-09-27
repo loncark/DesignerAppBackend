@@ -3,6 +3,9 @@ from io import BytesIO
 from zipfile import ZipFile
 
 class DummyFirebaseRepository(Repository):
+    def __init__(self):
+        pass
+    
     def getDesigns(self, success=True, exception=False):
         if exception:
             return f'Error retrieving designs: Test exception'

@@ -2,6 +2,9 @@ from interface.Repository import Repository
 import json
 
 class DummyGoogleTrendsRepository(Repository):
+    def __init__(self):
+        pass
+    
     def fetchTrends(self, date, country_code):
         filePath = r"C:\Users\Kristina\Documents\Diplomski rad\DesignerAppBackend\sample JSONs\TrendPage1.json"   
             

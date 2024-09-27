@@ -2,6 +2,9 @@ from interface.Repository import Repository
 import json
 
 class DummyEtsyRepository(Repository):
+    def __init__(self):
+        pass
+    
     def fetchProducts(self, keyword, page):
         if keyword == '':
             filePath = r"C:\Users\Kristina\Documents\Diplomski rad\DesignerAppBackend\sample JSONs\EtsyPage1.json"

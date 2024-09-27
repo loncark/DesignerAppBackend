@@ -2,6 +2,9 @@ from interface.Repository import Repository
 import aiohttp, json
 
 class RealStableDiffusionRepository(Repository):
+    def __init__(self):
+        pass
+    
     async def generateImage(self, url, payload):
         async with aiohttp.ClientSession() as session:
           try:

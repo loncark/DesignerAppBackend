@@ -2,6 +2,9 @@ from interface.Repository import Repository
 import json
 
 class DummyTrademarkRepository(Repository):
+    def __init__(self):
+        pass
+    
     def fetchTrademarks(self, prompt):
         if prompt != '':
             filePath = r"C:\Users\Kristina\Documents\Diplomski rad\DesignerAppBackend\sample JSONs\Trademarks1.json"
