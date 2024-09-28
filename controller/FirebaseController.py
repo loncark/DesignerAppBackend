@@ -1,22 +1,23 @@
+from interface.controllerInterface.DatabaseController import DatabaseController
 from interface.Service import Service
 from flask import Blueprint, request, jsonify, send_file
 
-class FirebaseController:
+class FirebaseController(DatabaseController):
     def __init__(self, service: Service):
         self.service = service
         self.blueprint = Blueprint('firebaseBp', __name__)
         self.registerRoutes()
 
     def registerRoutes(self):
-        self.blueprint.route('/db/saveDesign', methods=['POST'])(self.saveDesignToRealtimeDb)
+        self.blueprint.route('/db/saveDesign', methods=['POST'])(self.saveDesignToDb)
         self.blueprint.route('/db/deleteDesign', methods=['DELETE'])(self.deleteDesignFromDb)
         self.blueprint.route('/db/allDesigns', methods=['GET'])(self.getAllDesigns)
-        self.blueprint.route('/storage', methods=['POST'])(self.saveToStorage)
-        self.blueprint.route('/storageDelete', methods=['DELETE'])(self.deleteFromStorage)
+        self.blueprint.route('/storage', methods=['POST'])(self.saveImageToStorage)
+        self.blueprint.route('/storageDelete', methods=['DELETE'])(self.deleteImageFromStorage)
         self.blueprint.route('/downloadDesign', methods=['POST'])(self.downloadDesign)
 
     
-    def saveDesignToRealtimeDb(self):
+    def saveDesignToDb(self):
         data = request.get_json()
         return self.service.storeDesignToDb(**data)
 
@@ -28,7 +29,7 @@ class FirebaseController:
         response = self.service.getAllDesigns()
         return jsonify({'error': response}) if isinstance(response, str) else response
 
-    def saveToStorage(self):
+    def saveImageToStorage(self):
         image = request.files['image']
         designId = request.form['design_id']
         
@@ -38,7 +39,7 @@ class FirebaseController:
         except Exception as e:
             return jsonify({'error': str(e)}), 500
 
-    def deleteFromStorage(self):
+    def deleteImageFromStorage(self):
         url = request.get_json().get('imgUrl')  
         boolean = self.service.deleteFromStorageByUrl(url)
 
