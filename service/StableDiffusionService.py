@@ -1,8 +1,8 @@
+from interface.repositoryInterface.ImageGenerationRepository import ImageGenerationRepository
 from constants import SD_TXT2IMG_URL, SD_IMG2IMG_URL
-from interface.Repository import Repository
 
 class StableDiffusionService:
-  def __init__(self, repository: Repository):
+  def __init__(self, repository: ImageGenerationRepository):
     self.repository = repository
 
   async def txt2img(self, payload):

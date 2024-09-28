@@ -1,9 +1,9 @@
 from interface.controllerInterface.ImageGenerationController import ImageGenerationController
-from interface.Service import Service
+from interface.serviceInterface.ImageGenerationService import ImageGenerationService
 from flask import Blueprint, request
 
 class StableDiffusionController(ImageGenerationController):
-    def __init__(self, service: Service):
+    def __init__(self, service: ImageGenerationService):
         self.service = service
         self.blueprint = Blueprint('sdBp', __name__)
         self.registerRoutes()
@@ -14,8 +14,8 @@ class StableDiffusionController(ImageGenerationController):
 
     async def textToImage(self):
         data = request.get_json()
-        return await self.service.txt2img(data)
+        return await self.service.textToImage(data)
 
     async def imageToImage(self):
         data = request.get_json()
-        return await self.service.img2img(data)
+        return await self.service.imageToImage(data)

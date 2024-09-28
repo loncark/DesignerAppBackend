@@ -1,7 +1,7 @@
-from interface.Repository import Repository
+from interface.repositoryInterface.ImageGenerationRepository import ImageGenerationRepository
 import json
 
-class DummyStableDiffusionRepository(Repository):
+class DummyStableDiffusionRepository(ImageGenerationRepository):
     def __init__(self):
         pass
     

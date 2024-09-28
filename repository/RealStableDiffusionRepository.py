@@ -1,7 +1,7 @@
-from interface.Repository import Repository
+from interface.repositoryInterface.ImageGenerationRepository import ImageGenerationRepository
 import aiohttp, json
 
-class RealStableDiffusionRepository(Repository):
+class RealStableDiffusionRepository(ImageGenerationRepository):
     def __init__(self):
         pass
     
