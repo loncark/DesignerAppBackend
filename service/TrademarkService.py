@@ -1,14 +1,14 @@
-from interface.Repository import Repository
+from interface.repositoryInterface.TrademarkCheckRepository import TrademarkCheckRepository
 
 class TrademarkService:
-  def __init__(self, repository: Repository):
+  def __init__(self, repository: TrademarkCheckRepository):
     self.repository = repository
 
-  def fetchAndFilterResponse(self, prompt):
-    return self.filterJson(self.fetchTrademarks(prompt))
+  def getTrademarks(self, prompt):
+    return self.filterJson(self.fetchUnfilteredTrademarkData(prompt))
 
-  def fetchTrademarks(self, prompt):
-    return self.repository.fetchTrademarks(prompt)    
+  def fetchUnfilteredTrademarkData(self, prompt):
+    return self.repository.getTrademarks(prompt)    
 
   def filterJson(self, data):
     transformedData = {}

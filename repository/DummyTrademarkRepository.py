@@ -1,11 +1,11 @@
-from interface.Repository import Repository
+from interface.repositoryInterface.TrademarkCheckRepository import TrademarkCheckRepository
 import json
 
-class DummyTrademarkRepository(Repository):
+class DummyTrademarkRepository(TrademarkCheckRepository):
     def __init__(self):
         pass
     
-    def fetchTrademarks(self, prompt):
+    def getTrademarks(self, prompt):
         if prompt != '':
             filePath = r"C:\Users\Kristina\Documents\Diplomski rad\DesignerAppBackend\sample JSONs\Trademarks1.json"
         else:
