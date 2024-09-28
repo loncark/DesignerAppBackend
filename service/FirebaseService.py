@@ -1,13 +1,14 @@
-from interface.Repository import Repository
+from interface.serviceInterface.DatabaseService import DatabaseService
+from interface.repositoryInterface.DatabaseRepository import DatabaseRepository
 
-class FirebaseService:
-    def __init__(self, repository: Repository):
+class FirebaseService(DatabaseService):
+    def __init__(self, repository: DatabaseRepository):
         self.repository = repository
 
     # REALTIME DATABASE
 
     def getAllDesigns(self):
-        response = self.repository.getDesigns()
+        response = self.repository.getAllDesigns()
         return response if isinstance(response, str) else self.designsWithIds(response)           
         
     def designsWithIds(self, designs):
@@ -27,19 +28,19 @@ class FirebaseService:
             })
         return newDesigns
     
-    def storeDesignToDb(self, design_name, title, tags, related_links, image_links, description, design_id):
-        return self.repository.storeDesignToDb(design_name, title, tags, related_links, image_links, description, design_id)
+    def saveDesign(self, design_name, title, tags, related_links, image_links, description, design_id):
+        return self.repository.saveDesign(design_name, title, tags, related_links, image_links, description, design_id)
 
     def deleteDesign(self, design_id):
         return self.repository.deleteDesign(design_id)
         
     # STORAGE
 
-    def storeToStorage(self, image_file, design_id):
-        return self.repository.storeToStorage(image_file, design_id)
+    def saveImage(self, image_file, design_id):
+        return self.repository.saveImage(image_file, design_id)
         
-    def deleteFromStorageByUrl(self, download_url):
-        return self.repository.deleteFromStorageByUrl(download_url)
+    def deleteImageByUrl(self, download_url):
+        return self.repository.deleteImageByUrl(download_url)
 
     def createDesignZip(self, design):
         return self.repository.createDesignZip(design)

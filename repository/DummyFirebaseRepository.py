@@ -1,12 +1,12 @@
-from interface.Repository import Repository
+from interface.repositoryInterface.DatabaseRepository import DatabaseRepository
 from io import BytesIO
 from zipfile import ZipFile
 
-class DummyFirebaseRepository(Repository):
+class DummyFirebaseRepository(DatabaseRepository):
     def __init__(self):
         pass
     
-    def getDesigns(self, success=True, exception=False):
+    def getAllDesigns(self, success=True, exception=False):
         if exception:
             return f'Error retrieving designs: Test exception'
         elif success:
@@ -22,7 +22,7 @@ class DummyFirebaseRepository(Repository):
         else:
             return []
         
-    def storeDesignToDb(self, design_name, title, tags, related_links, image_links, description, design_id, idExists=False, exception=False):
+    def saveDesign(self, design_name, title, tags, related_links, image_links, description, design_id, idExists=False, exception=False):
         if exception:
            return f'Error uploading design data: Test exception'
         elif idExists:
@@ -38,13 +38,13 @@ class DummyFirebaseRepository(Repository):
         
     # STORAGE
 
-    def storeToStorage(self, image_file, design_id, exception=False):
+    def saveImage(self, image_file, design_id, exception=False):
         if exception:
             raise Exception('Test exception')
         else:
             return 'https://firebasestorage.googleapis.com/v0/b/designerapp-65092.appspot.com/o/testImage.jpg?alt=media&token=3bf25245-5cab-4a69-81cc-e301e484c676'
         
-    def deleteFromStorageByUrl(self, download_url, imageExists=True, exception=False):
+    def deleteImageByUrl(self, download_url, imageExists=True, exception=False):
         if exception or not imageExists:
             return False
         else:

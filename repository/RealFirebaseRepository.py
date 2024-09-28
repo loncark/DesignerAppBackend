@@ -1,4 +1,4 @@
-from interface.Repository import Repository
+from interface.repositoryInterface.DatabaseRepository import DatabaseRepository
 import firebase_admin, requests, os, uuid
 from firebase_admin import credentials, db, storage
 from constants import REALTIMEDB_URL, FIREBASE_CREDS_JSON_LOCATION
@@ -7,7 +7,7 @@ from PIL import Image
 from io import BytesIO
 from zipfile import ZipFile
 
-class RealFirebaseRepository(Repository):
+class RealFirebaseRepository(DatabaseRepository):
     def __init__(self):
         if not firebase_admin._apps:
             creds = credentials.Certificate(FIREBASE_CREDS_JSON_LOCATION)
@@ -16,9 +16,9 @@ class RealFirebaseRepository(Repository):
                 'storageBucket': STORAGE_BUCKET_LOCATION
             })            
 
-    # REALTIME DATABASE
+    # DESIGNS (FIREBASE REALTIME DATABASE)
 
-    def getDesigns(self):
+    def getAllDesigns(self):
         dbRef = db.reference('/Designs')
 
         try:
@@ -30,7 +30,7 @@ class RealFirebaseRepository(Repository):
         except Exception as e:
             return f'Error retrieving design data: {e}'
         
-    def storeDesignToDb(self, design_name, title, tags, related_links, image_links, description, design_id):
+    def saveDesign(self, design_name, title, tags, related_links, image_links, description, design_id):
         dbRef = db.reference('/Designs')
 
         data = {
@@ -63,9 +63,9 @@ class RealFirebaseRepository(Repository):
         except Exception as e:
             return f'Error deleting design data: {e}'
         
-    # STORAGE
+    # IMAGES (FIREBASE STORAGE)
 
-    def storeToStorage(self, image_file, design_id):
+    def saveImage(self, image_file, design_id):
         try:
             bucket = storage.bucket()
             image = Image.open(image_file)
@@ -82,7 +82,7 @@ class RealFirebaseRepository(Repository):
         except Exception as e:
             raise e
         
-    def deleteFromStorageByUrl(self, download_url):
+    def deleteImageByUrl(self, download_url):
         try:
             bucket = storage.bucket()
             fileName = download_url.split('/')[-2] + '/' + download_url.split('/')[-1]
