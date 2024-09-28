@@ -1,11 +1,11 @@
-from interface.Repository import Repository
+from interface.repositoryInterface.ProductResearchRepository import ProductResearchRepository
 import json
 
-class DummyEtsyRepository(Repository):
+class DummyEtsyRepository(ProductResearchRepository):
     def __init__(self):
         pass
     
-    def fetchProducts(self, keyword, page):
+    def getProducts(self, keyword, page):
         if keyword == '':
             filePath = r"C:\Users\Kristina\Documents\Diplomski rad\DesignerAppBackend\sample JSONs\EtsyPage1.json"
         elif keyword == 'cat shirt':

@@ -1,8 +1,8 @@
-from interface.Repository import Repository
+from interface.repositoryInterface.ProductResearchRepository import ProductResearchRepository
 
 class EtsyService:
-    def __init__(self, repository: Repository):
+    def __init__(self, repository: ProductResearchRepository):
         self.repository = repository
 
-    def fetchProducts(self, keyword, page):
-        return self.repository.fetchProducts(keyword, page)
+    def getProducts(self, keyword, page):
+        return self.repository.getProducts(keyword, page)

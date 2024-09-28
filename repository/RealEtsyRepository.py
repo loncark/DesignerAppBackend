@@ -1,12 +1,12 @@
-from interface.Repository import Repository
+from interface.repositoryInterface.ProductResearchRepository import ProductResearchRepository
 from constants import RAPIDAPI_ETSY_URL, RAPIDAPI_API_KEY
 import requests, json
 
-class RealEtsyRepository(Repository):
+class RealEtsyRepository(ProductResearchRepository):
     def __init__(self):
         pass
     
-    def fetchProducts(self, keyword, page):
+    def getProducts(self, keyword, page):
         queryString = {"query": keyword, "page" : page}
 
         headers = {

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class ProductResearchService(ABC):
+class ProductResearchRepository(ABC):
     @abstractmethod
     def __init__(self):
         pass
