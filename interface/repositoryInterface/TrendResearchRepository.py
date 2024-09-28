@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class TrendResearchService(ABC):
+class TrendResearchRepository(ABC):
     @abstractmethod
     def __init__(self):
         pass

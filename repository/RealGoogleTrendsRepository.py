@@ -1,14 +1,14 @@
-from interface.Repository import Repository
+from interface.repositoryInterface.TrendResearchRepository import TrendResearchRepository
 import serpapi, json
 from datetime import datetime, timedelta
 from flask import jsonify
 from constants import SERPAPI_API_KEY
 
-class RealGoogleTrendsRepository(Repository):
+class RealGoogleTrendsRepository(TrendResearchRepository):
     def __init__(self):
         pass
     
-    def fetchTrends(self, date, country_code):
+    def getTrends(self, date, country_code):
         params = {
                 "engine": "google_trends_trending_now",
                 "frequency": "daily",
@@ -28,7 +28,7 @@ class RealGoogleTrendsRepository(Repository):
                 print(e)
                 return json.dumps({"Exception": e})
             
-    def fetchRelatedQueries(self, keyword):
+    def getRelatedQueries(self, keyword):
         params = {
                 "engine": "google_trends",
                 "q": keyword,
@@ -47,7 +47,7 @@ class RealGoogleTrendsRepository(Repository):
                 print(e)
                 return json.dumps({"Exception": e})
             
-    def fetchInterestByRegion(self, keyword):
+    def getInterestByRegion(self, keyword):
         params = {
                 "engine": "google_trends",
                 "q": keyword,
@@ -66,7 +66,7 @@ class RealGoogleTrendsRepository(Repository):
                 print(e)
                 return json.dumps({"Exception": e})
             
-    def fetchInterestOverTime(self, keyword):
+    def getInterestOverTime(self, keyword):
         if not keyword:
             return jsonify({'error': 'Keyword is required'}), 400
                 

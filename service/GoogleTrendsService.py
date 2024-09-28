@@ -1,24 +1,22 @@
+from interface.repositoryInterface.TrendResearchRepository import TrendResearchRepository
 from datetime import datetime
 from flask import jsonify
-from interface.Repository import Repository
-
-# LEAVE global_test=True TO NOT DRAIN THE API LIMIT (45/mo for etsy, a lot for trademark, 100/mo for Trends, interest and related together)
 
 class GoogleTrendsService:
-    def __init__(self, repository: Repository):
+    def __init__(self, repository: TrendResearchRepository):
         self.repository = repository
 
-    def fetchTrends(self, date, country_code):
-        return self.repository.fetchTrends(date, country_code)
+    def getTrends(self, date, country_code):
+        return self.repository.getTrends(date, country_code)
             
-    def fetchRelatedQueries(self, keyword):
-        return self.repository.fetchRelatedQueries(keyword)
+    def getRelatedQueries(self, keyword):
+        return self.repository.getRelatedQueries(keyword)
             
-    def fetchInterestByRegion(self, keyword):
-        return self.repository.fetchInterestByRegion(keyword)
+    def getInterestByRegion(self, keyword):
+        return self.repository.getInterestByRegion(keyword)
             
-    def fetchInterestOverTime(self, keyword):
-        data = self.repository.fetchInterestOverTime(keyword)     
+    def getInterestOverTime(self, keyword):
+        data = self.repository.getInterestOverTime(keyword)     
         processed_data = self.extractDatesAndValues(data)
 
         return jsonify({'data': processed_data})

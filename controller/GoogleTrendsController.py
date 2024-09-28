@@ -1,8 +1,8 @@
-from interface.Service import Service
+from interface.serviceInterface.TrendResearchService import TrendResearchService
 from flask import Blueprint, request
 
 class GoogleTrendsController:
-    def __init__(self, service: Service):
+    def __init__(self, service: TrendResearchService):
         self.service = service
         self.blueprint = Blueprint('gtBp', __name__)
         self.registerRoutes()
@@ -17,19 +17,19 @@ class GoogleTrendsController:
         data = request.get_json()
         country_code = data.get('country_code')
         date = data.get('date')
-        return self.service.fetchTrends(date, country_code)
+        return self.service.getTrends(date, country_code)
 
     def getRelatedQueries(self):
         data = request.get_json()
         keyword = data.get('keyword')
-        return self.service.fetchRelatedQueries(keyword)
+        return self.service.getRelatedQueries(keyword)
 
     def getInterestByRegion(self):
         data = request.get_json()
         keyword = data.get('keyword')
-        return self.service.fetchInterestByRegion(keyword)
+        return self.service.getInterestByRegion(keyword)
 
     def getInterestOverTime(self):
         data = request.get_json()
         keyword = data.get('keyword')
-        return self.service.fetchInterestOverTime(keyword)
+        return self.service.getInterestOverTime(keyword)
