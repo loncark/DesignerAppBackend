@@ -1,10 +1,10 @@
 # START VPN ON US OR JAPAN SERVER BEFORE RUNNING LIVE
 
-from interface.Repository import Repository
+from interface.repositoryInterface.TextGenerationRepository import TextGenerationRepository
 
 class GeminiService:
-    def __init__(self, repository: Repository):
+    def __init__(self, repository: TextGenerationRepository):
         self.repository = repository
 
-    def fetchResponse(self, prompt):
-        return self.repository.fetchResponse(prompt)
+    def generateText(self, prompt):
+        return self.repository.generateText(prompt)

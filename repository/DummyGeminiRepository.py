@@ -1,8 +1,8 @@
-from interface.Repository import Repository
+from interface.repositoryInterface.TextGenerationRepository import TextGenerationRepository
 
-class DummyGeminiRepository(Repository):
+class DummyGeminiRepository(TextGenerationRepository):
     def __init__(self):
         pass
     
-    def fetchResponse(self, prompt):
+    def generateText(self, prompt):
         return "Some dummy text for testing purposes."

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class TextGenerationService(ABC):
+class TextGenerationRepository(ABC):
     @abstractmethod
     def __init__(self):
         pass
