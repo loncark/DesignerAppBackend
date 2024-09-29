@@ -1,54 +1,22 @@
-from flask import Flask
-from flask_cors import CORS
-import os
-import importlib
-from config import ProductionConfig, DevelopmentConfig, TestingConfig    
+from DesignerApp import DesignerApp
+from RepositoryConfig import *
+from ProviderConfig import *
 
-def createApp(configName=None):
-    app = Flask(__name__)
-    CORS(app)
-
-    if configName == 'prod':
-        app.config.from_object(ProductionConfig)
-    elif configName == 'test':
-        app.config.from_object(TestingConfig)
+def createApp(providerConfigName, repositoryConfigName):
+    if repositoryConfigName == 'prod':
+        repositoryConfig = ProductionConfig()
+    elif repositoryConfigName == 'test':
+        repositoryConfig = TestingConfig()
     else:
-        app.config.from_object(DevelopmentConfig)
+        repositoryConfig = DevelopmentConfig()
 
-    controllers = loadControllers(app.config)
+    if providerConfigName == 'Primary':
+        providerConfig = PrimaryProviderConfig()
 
-    for controller in controllers:
-        app.register_blueprint(controller.blueprint)
+    app = DesignerApp(providerConfig, repositoryConfig)
 
     return app
 
-def loadControllers(config):
-    rootDirPath = os.path.dirname(os.path.abspath(__file__))
-    controllerDirPath = os.path.join(rootDirPath, 'controller')
-    fileNames = os.listdir(controllerDirPath)
-
-    controllers = []
-    for fileName in fileNames:
-        if fileName.endswith('.py') and not fileName.startswith('__'):
-            apiName = fileName[:-13]
-
-            controllerClassName = apiName + 'Controller'
-            controllerModule = importlib.import_module('controller.' + controllerClassName)
-
-            serviceClassName = apiName + 'Service'
-            serviceModule = importlib.import_module('service.' + serviceClassName)
-
-            repositoryClassName = 'Dummy' + apiName + 'Repository' if config['USE_DUMMY_' + apiName.upper() + '_REPO'] else 'Real' + apiName + 'Repository'               
-            repositoryModule = importlib.import_module('repository.' + repositoryClassName)
-            
-            controllerClass = getattr(controllerModule, controllerClassName)
-            serviceClass = getattr(serviceModule, serviceClassName)
-            repositoryClass = getattr(repositoryModule, repositoryClassName)
-
-            controllers.append(controllerClass(serviceClass(repositoryClass())))
-
-    return controllers
-
 if __name__ == '__main__':
-    app = createApp()
-    app.run(debug=True)
+    app = createApp(providerConfigName = 'Primary', repositoryConfigName='dev')
+    app.run()
