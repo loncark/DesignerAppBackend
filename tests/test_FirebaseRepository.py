@@ -8,7 +8,7 @@ class TestFirebaseRepository(unittest.TestCase):
         self.repository = RealFirebaseRepository()
 
     @patch('firebase_admin.db.reference')
-    def test_storeDesignToDb(self, mock_db_reference):
+    def test_saveDesign(self, mock_db_reference):
         mockDbRef = Mock()
         mock_db_reference.return_value = mockDbRef
         mockDesignRef = Mock()
@@ -24,14 +24,14 @@ class TestFirebaseRepository(unittest.TestCase):
 
         # case 1
         mockDesignRef.get.return_value = True
-        result = self.repository.storeDesignToDb(design_name, title, tags, related_links, image_links, description, design_id)
+        result = self.repository.saveDesign(design_name, title, tags, related_links, image_links, description, design_id)
 
         mockDesignRef.update.assert_called_once()
         self.assertEqual(result, "Design with ID 12345 updated successfully")
 
         # case 2
         mockDesignRef.get.return_value = False
-        result = self.repository.storeDesignToDb(design_name, title, tags, related_links, image_links, description, design_id)
+        result = self.repository.saveDesign(design_name, title, tags, related_links, image_links, description, design_id)
 
         mockDesignRef.set.assert_called_once()
         self.assertEqual(result, "Design with ID 12345 added successfully")
@@ -39,13 +39,13 @@ class TestFirebaseRepository(unittest.TestCase):
         # case 3
         mockDesignRef.get.side_effect = Exception("Test exception")
 
-        result = self.repository.storeDesignToDb(design_name, title, tags, related_links, image_links, description, design_id)
+        result = self.repository.saveDesign(design_name, title, tags, related_links, image_links, description, design_id)
 
         self.assertEqual(result, 'Error uploading design data: Test exception')
 
 
     @patch('firebase_admin.db.reference')
-    def test_getDesigns(self, mock_db_reference):
+    def test_getAllDesigns(self, mock_db_reference):
         mockDbRef = Mock()
         mock_db_reference.return_value = mockDbRef
         mockDesigns = {
@@ -61,7 +61,7 @@ class TestFirebaseRepository(unittest.TestCase):
         mockDbRef.get.return_value = mockDesigns
         expectedResult = mockDesigns
 
-        result = self.repository.getDesigns()
+        result = self.repository.getAllDesigns()
         
         mockDbRef.get.assert_called_once()
         mock_db_reference.assert_called_once()
@@ -72,7 +72,7 @@ class TestFirebaseRepository(unittest.TestCase):
         mockDbRef.get.return_value = None
         expectedResult = []
 
-        result = self.repository.getDesigns()
+        result = self.repository.getAllDesigns()
 
         mockDbRef.get.assert_called_once()
         mock_db_reference.assert_called_once()
@@ -80,7 +80,7 @@ class TestFirebaseRepository(unittest.TestCase):
 
         # case 3
         mockDbRef.get.side_effect = Exception("Test exception")
-        result = self.repository.getDesigns()
+        result = self.repository.getAllDesigns()
         self.assertEqual(result, "Error retrieving design data: Test exception")
 
 
@@ -103,7 +103,7 @@ class TestFirebaseRepository(unittest.TestCase):
     @patch('firebase_admin.storage.bucket')
     @patch('PIL.Image.open')
     @patch('uuid.uuid4')
-    def test_storeToStorage(self, mock_uuid, mock_image_open, mock_storage_bucket):
+    def test_saveImage(self, mock_uuid, mock_image_open, mock_storage_bucket):
             mockBucket = Mock()
             mock_storage_bucket.return_value = mockBucket
             mockImage = Mock()
@@ -115,7 +115,7 @@ class TestFirebaseRepository(unittest.TestCase):
             # case 1
             mockBlob.public_url = 'test-url'
 
-            result = self.repository.storeToStorage('test.png', '12345')
+            result = self.repository.saveImage('test.png', '12345')
 
             mockImage.save.assert_called_once_with('/tmp/image.png', format='PNG')
             mockBucket.blob.assert_called_once_with(f'images/12345/testId.png')
@@ -128,11 +128,11 @@ class TestFirebaseRepository(unittest.TestCase):
             mockImage.save.side_effect = Exception
             
             with self.assertRaises(Exception):
-                self.repository.storeToStorage('test.png', '12345')
+                self.repository.saveImage('test.png', '12345')
 
 
     @patch('firebase_admin.storage.bucket')
-    def test_deleteFromStorageByUrl(self, mock_storage_bucket):
+    def test_deleteImageByUrl(self, mock_storage_bucket):
         mockBucket = Mock()
         mock_storage_bucket.return_value = mockBucket
         mockBlob = Mock()
@@ -142,7 +142,7 @@ class TestFirebaseRepository(unittest.TestCase):
         # case 1
         mockBlob.exists.return_value = True
 
-        result = self.repository.deleteFromStorageByUrl(testUrl)
+        result = self.repository.deleteImageByUrl(testUrl)
         
         mockBucket.blob.assert_called_once_with('folder/file.txt')
         mockBlob.delete.assert_called_once()
@@ -151,14 +151,14 @@ class TestFirebaseRepository(unittest.TestCase):
         # case 2
         mockBlob.exists.return_value = False
         
-        result = self.repository.deleteFromStorageByUrl(testUrl)
+        result = self.repository.deleteImageByUrl(testUrl)
 
         self.assertFalse(result)
         
         # case 3
         mockBlob.delete.side_effect = Exception("Test exception")
 
-        result = self.repository.deleteFromStorageByUrl(testUrl)
+        result = self.repository.deleteImageByUrl(testUrl)
         
         self.assertFalse(result)
         
