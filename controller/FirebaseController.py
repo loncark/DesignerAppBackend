@@ -33,7 +33,7 @@ class FirebaseController(DatabaseController):
         designId = request.form['design_id']
         
         try:
-            downloadUrl = self.service.saveImageToStorage(image, designId)
+            downloadUrl = self.service.saveImage(image, designId)
             return jsonify({'url': downloadUrl}), 200
         except Exception as e:
             return jsonify({'error': str(e)}), 500

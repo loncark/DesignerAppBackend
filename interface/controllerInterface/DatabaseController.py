@@ -6,20 +6,20 @@ class DatabaseController(ABC):
     def __init__(self, service: DatabaseService):
         self.service = service
 
-    def saveDesignToDb(self):
+    def saveDesign(self):
         pass
 
-    def deleteDesignFromDb(self):
+    def deleteDesign(self):
         pass
 
     def getAllDesigns(self):
         pass
 
-    def saveImageToStorage(self):
+    def saveImage(self):
         pass
 
-    def deleteImageFromStorage(self):
+    def deleteImageByUrl(self):
         pass
 
-    def downloadDesign(self):
+    def createDesignZip(self):
         pass
