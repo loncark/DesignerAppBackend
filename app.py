@@ -1,22 +1,22 @@
 from DesignerApp import DesignerApp
-from RepositoryConfig import *
-from ProviderConfig import *
+import importlib
 
 def createApp(providerConfigName, repositoryConfigName):
-    if repositoryConfigName == 'prod':
-        repositoryConfig = ProductionConfig()
-    elif repositoryConfigName == 'test':
-        repositoryConfig = TestingConfig()
-    else:
-        repositoryConfig = DevelopmentConfig()
 
-    if providerConfigName == 'Primary':
-        providerConfig = PrimaryProviderConfig()
+    repositoryConfigClassName = repositoryConfigName + 'RepositoryConfig'
+    repositoryConfigModule = importlib.import_module('config.repositoryConfig.' + repositoryConfigClassName)
+    repositoryConfigClass = getattr(repositoryConfigModule, repositoryConfigClassName)
+    repositoryConfig = repositoryConfigClass()
+
+    providerConfigClassName = providerConfigName + 'ProviderConfig'
+    providerConfigModule = importlib.import_module('config.providerConfig.' + providerConfigClassName)
+    providerConfigClass = getattr(providerConfigModule, providerConfigClassName)
+    providerConfig = providerConfigClass()
 
     app = DesignerApp(providerConfig, repositoryConfig)
 
     return app
 
 if __name__ == '__main__':
-    app = createApp(providerConfigName = 'Primary', repositoryConfigName='dev')
+    app = createApp(providerConfigName = 'Primary', repositoryConfigName='Development')
     app.run()
