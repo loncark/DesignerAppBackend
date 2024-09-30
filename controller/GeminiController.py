@@ -4,7 +4,7 @@ from flask import Blueprint, request
 
 class GeminiController(TextGenerationController):
     def __init__(self, service: TextGenerationService):
-        self.service = service
+        super().__init__(service)
         self.blueprint = Blueprint('geminiBp', __name__)
         self.blueprint.route('/gemini', methods=['POST'])(self.generateText)
 

@@ -4,7 +4,7 @@ from flask import Blueprint, request
 
 class StableDiffusionController(ImageGenerationController):
     def __init__(self, service: ImageGenerationService):
-        self.service = service
+        super().__init__(service)
         self.blueprint = Blueprint('sdBp', __name__)
         self.registerRoutes()
 

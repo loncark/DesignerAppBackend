@@ -3,7 +3,7 @@ from interface.repositoryInterface.DatabaseRepository import DatabaseRepository
 
 class FirebaseService(DatabaseService):
     def __init__(self, repository: DatabaseRepository):
-        self.repository = repository
+        super().__init__(repository)
 
     # REALTIME DATABASE
 

@@ -4,7 +4,7 @@ from flask import Blueprint, request
 
 class USTrademarkController(TrademarkCheckController):
     def __init__(self, service: TrademarkCheckService):
-        self.service = service
+        super().__init__(service)
         self.blueprint = Blueprint('trademarkBp', __name__)
         self.blueprint.route('/tess', methods=['POST'])(self.getTrademarks)
 

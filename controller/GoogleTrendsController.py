@@ -1,9 +1,10 @@
 from interface.serviceInterface.TrendResearchService import TrendResearchService
+from interface.controllerInterface.TrendResearchController import TrendResearchController
 from flask import Blueprint, request
 
-class GoogleTrendsController:
+class GoogleTrendsController(TrendResearchController):
     def __init__(self, service: TrendResearchService):
-        self.service = service
+        super().__init__(service)
         self.blueprint = Blueprint('gtBp', __name__)
         self.registerRoutes()
 

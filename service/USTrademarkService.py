@@ -1,8 +1,9 @@
 from interface.repositoryInterface.TrademarkCheckRepository import TrademarkCheckRepository
+from interface.serviceInterface.TrademarkCheckService import TrademarkCheckService
 
-class USTrademarkService:
+class USTrademarkService(TrademarkCheckService):
   def __init__(self, repository: TrademarkCheckRepository):
-    self.repository = repository
+    super().__init__(repository)
 
   def getTrademarks(self, prompt):
     return self.filterJson(self.fetchUnfilteredTrademarkData(prompt))

@@ -1,9 +1,10 @@
 from abc import ABC, abstractmethod
+from interface.serviceInterface.TrendResearchService import TrendResearchService
 
 class TrendResearchController(ABC):
     @abstractmethod
-    def __init__(self):
-        pass
+    def __init__(self, service: TrendResearchService):
+        self.service = service
 
     def getTrends(self):
         pass

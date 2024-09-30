@@ -1,10 +1,11 @@
 from interface.repositoryInterface.TrendResearchRepository import TrendResearchRepository
+from interface.serviceInterface.TrendResearchService import TrendResearchService
 from datetime import datetime
 from flask import jsonify
 
-class GoogleTrendsService:
+class GoogleTrendsService(TrendResearchService):
     def __init__(self, repository: TrendResearchRepository):
-        self.repository = repository
+        super().__init__(repository)
 
     def getTrends(self, date, country_code):
         return self.repository.getTrends(date, country_code)

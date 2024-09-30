@@ -4,7 +4,7 @@ from flask import Blueprint, request, jsonify, send_file
 
 class FirebaseController(DatabaseController):
     def __init__(self, service: DatabaseService):
-        self.service = service
+        super().__init__(service)
         self.blueprint = Blueprint('firebaseBp', __name__)
         self.registerRoutes()
 
