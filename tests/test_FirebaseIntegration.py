@@ -8,7 +8,7 @@ class TestFirebaseIntegration(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
-        app = createApp('prod')
+        app = createApp(providerConfigName = 'Primary', repositoryConfigName='Development')
         self.client = app.test_client()
 
     @patch('firebase_admin.db.reference')

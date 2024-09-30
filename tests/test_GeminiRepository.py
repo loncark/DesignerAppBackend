@@ -7,12 +7,12 @@ class TestGeminiRepository(unittest.TestCase):
         self.repository = RealGeminiRepository()
 
     @patch('google.generativeai.GenerativeModel.generate_content')
-    def test_fetchResponse(self, mockGenerateContent):
+    def test_generateText(self, mockGenerateContent):
         mockResponse = Mock()
         mockResponse.text = "Cats are furry, domesticated mammals often kept as pets."
         mockGenerateContent.return_value = mockResponse
 
-        result = self.repository.fetchResponse("Tell me what cats are in one sentence.")
+        result = self.repository.generateText("Tell me what cats are in one sentence.")
         
         mockGenerateContent.assert_called_once_with("Tell me what cats are in one sentence.")
         self.assertEqual(result, "Cats are furry, domesticated mammals often kept as pets.")
