@@ -1,6 +1,6 @@
 from interface.repositoryInterface.TrademarkCheckRepository import TrademarkCheckRepository
 
-class TrademarkService:
+class USTrademarkService:
   def __init__(self, repository: TrademarkCheckRepository):
     self.repository = repository
 

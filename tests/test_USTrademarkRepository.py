@@ -1,11 +1,11 @@
 import unittest
 from unittest.mock import patch, Mock
 from constants import RAPIDAPI_API_KEY
-from repository.RealTrademarkRepository import RealTrademarkRepository
+from repository.RealUSTrademarkRepository import RealUSTrademarkRepository
 
-class TestTrademarkRepository(unittest.TestCase):
+class TestUSTrademarkRepository(unittest.TestCase):
     def setUp(self):
-        self.repository = RealTrademarkRepository()
+        self.repository = RealUSTrademarkRepository()
 
     @patch('requests.get')
     def test_fetchTrademarks(self, mock_get):

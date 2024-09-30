@@ -1,7 +1,7 @@
 from interface.repositoryInterface.TrademarkCheckRepository import TrademarkCheckRepository
 import json
 
-class DummyTrademarkRepository(TrademarkCheckRepository):
+class DummyUSTrademarkRepository(TrademarkCheckRepository):
     def __init__(self):
         pass
     

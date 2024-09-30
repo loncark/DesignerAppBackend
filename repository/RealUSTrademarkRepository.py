@@ -3,7 +3,7 @@ import requests, json
 from urllib.parse import quote
 from constants import RAPIDAPI_API_KEY, TESS_BASE_URL
 
-class RealTrademarkRepository(TrademarkCheckRepository):
+class RealUSTrademarkRepository(TrademarkCheckRepository):
     def __init__(self):
         pass
     

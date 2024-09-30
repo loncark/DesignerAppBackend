@@ -2,7 +2,7 @@ from interface.controllerInterface.TrademarkCheckController import TrademarkChec
 from interface.serviceInterface.TrademarkCheckService import TrademarkCheckService
 from flask import Blueprint, request
 
-class TrademarkController(TrademarkCheckController):
+class USTrademarkController(TrademarkCheckController):
     def __init__(self, service: TrademarkCheckService):
         self.service = service
         self.blueprint = Blueprint('trademarkBp', __name__)
