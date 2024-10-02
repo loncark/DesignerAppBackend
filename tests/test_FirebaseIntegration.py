@@ -9,10 +9,10 @@ class TestFirebaseIntegration(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         app = createApp(providerConfigName = 'Primary', repositoryConfigName='Development')
-        self.client = app.test_client()
+        self.client = app.flaskInstance.test_client()
 
     @patch('firebase_admin.db.reference')
-    def test_storeDesignToDb(self, mock_db_reference):
+    def test_saveDesign(self, mock_db_reference):
         mockDbRef = Mock()
         mock_db_reference.return_value = mockDbRef
         mockDesignRef = Mock()
@@ -154,7 +154,7 @@ class TestFirebaseIntegration(unittest.TestCase):
 
     @patch('repository.RealFirebaseRepository.storage.bucket')
     @patch('uuid.uuid4')
-    def test_storeToStorage(self, mock_uuid, mock_storage_bucket):
+    def test_saveImage(self, mock_uuid, mock_storage_bucket):
         mockBucket = Mock()
         mock_storage_bucket.return_value = mockBucket
         mockBlob = Mock()
@@ -191,7 +191,7 @@ class TestFirebaseIntegration(unittest.TestCase):
     
     
     @patch('repository.RealFirebaseRepository.storage.bucket')
-    def test_deleteFromStorage(self, mock_storage_bucket):
+    def test_deleteImage(self, mock_storage_bucket):
         mockBucket = Mock()
         mock_storage_bucket.return_value = mockBucket
         mockBlob = Mock()
