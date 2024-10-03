@@ -25,19 +25,34 @@ class DesignerApp():
                 providerName = config[key]    # Gemini, Firebase...
 
                 controllerClassName = providerName + 'Controller'
-                controllerModule = importlib.import_module('controller.' + controllerClassName)
-
+                controllerClass = self.loadClass('Controller', controllerClassName, keyName)
+                
                 serviceClassName = providerName + 'Service'
-                serviceModule = importlib.import_module('service.' + serviceClassName)
+                serviceClass = self.loadClass('Service', serviceClassName, keyName)
 
                 repositoryClassName = 'Dummy' + providerName + 'Repository' if config['USE_DUMMY_' + keyName + '_REPO'] else 'Real' + providerName + 'Repository'               
-                repositoryModule = importlib.import_module('repository.' + repositoryClassName)
-                
-                controllerClass = getattr(controllerModule, controllerClassName)
-                serviceClass = getattr(serviceModule, serviceClassName)
-                repositoryClass = getattr(repositoryModule, repositoryClassName)
+                repositoryClass = self.loadClass('Repository', repositoryClassName, keyName)
 
                 controllers.append(controllerClass(serviceClass(repositoryClass())))
 
         for controller in controllers:
             self.flaskInstance.register_blueprint(controller.blueprint)
+
+    def loadClass(self, classType, className, keyName):
+        try:
+            interfaceName = keyName.lower().replace('_', ' ').title().replace(' ', '') + classType  # TEXT_GENERATION -> TextGenerationController
+            interfaceModule = importlib.import_module('interface.' + classType.lower()  + 'Interface.' + interfaceName)
+            interface = getattr(interfaceModule, interfaceName)
+
+            classModule = importlib.import_module(classType.lower() + '.' + className)
+            cls = getattr(classModule, className)
+
+        except ImportError as e:
+            raise ImportError(f'Failed to import {className} or its interface {str(e)}')
+        except AttributeError as e:
+            raise AttributeError(f'Class/Interface not found: {str(e)}')
+
+        if not issubclass(cls, interface):
+            raise TypeError(f"{cls.__name__} does not implement {interface.__name__}")
+        
+        return cls
